@@ -25,4 +25,10 @@ public class TicketController {
 		
 	}
 	
+	@RequestMapping("/payOk")
+	public void payOk() {
+		
+		
+	}
+	
 }
