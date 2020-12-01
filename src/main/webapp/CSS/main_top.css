@@ -1,3 +1,4 @@
+@import url(font.css);
 /* div[class*="col"] {
     border: 1px solid wheat;
 } */
@@ -6,14 +7,29 @@
     border: 1px solid white;
 } */
 
+.gradienttop {
+    position: absolute;
+    background: linear-gradient(to top, rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.815)) !important;
+    z-index: 2;
+}
+
+.gradientdown {
+    position: absolute;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.822), rgba(255, 255, 255, 0)) !important;
+    z-index: 2;
+    margin-top: 30.23vw;
+}
+
 a:focus {
     border: none;
     outline: none;
-    
 }
-a, a:hover{
-    color: black;
+
+a,
+a:hover {
+    color: rgb(255, 255, 255);
 }
+
 .dropdown:hover .dropdown-menu {
     display: block;
     left: -80vw;
@@ -30,42 +46,44 @@ a, a:hover{
 }
 
 #logo {
-    width: 30%;
+    width: 20%;
+    opacity: 0.7;
 
 }
 
 #login:hover {
-    border-bottom: 2px solid rgb(211, 63, 63);
+    border-bottom: 4px solid rgb(211, 63, 63);
 }
 
 .menu:hover {
-    border-bottom: 2px solid rgb(211, 63, 63);
-    animation: fadein 0.8s;
-  -moz-animation: fadein 0.8s; /* Firefox */
-  -webkit-animation: fadein 0.8s; /* Safari and Chrome */
-  -o-animation: fadein 0.8s; /* Opera */
+    border-bottom: 4px solid rgb(211, 63, 63);
+
 }
 
 .submenu:hover {
     font-weight: bolder;
 
 }
-ul{
+
+ul {
     list-style: none;
 }
-.sub li{
+
+.sub li {
     display: inline-block;
-    text-align:center;
+    text-align: center;
 }
 
-.sub li:nth-child(1){
+.sub li:nth-child(1) {
     margin-left: 78vw;
 }
 
-.sub{
-    background-color: #F8F8F8;
+.sub {
+    background-color: #000000f5;
     border: none;
     width: 200vw !important;
+    z-index: 3;
+    /* opacity: 0.9; */
 }
 
 .submenu {
@@ -73,36 +91,71 @@ ul{
     height: 2rem;
     border: 0px;
     margin-left: 50px;
+
     animation: fadein 0.3s;
-  -moz-animation: fadein 0.3s; /* Firefox */
-  -webkit-animation: fadein 0.3s; /* Safari and Chrome */
-  -o-animation: fadein 0.3s; /* Opera */
-    
+    -moz-animation: fadein 0.3s;
+    /* Firefox */
+    -webkit-animation: fadein 0.3s;
+    /* Safari and Chrome */
+    -o-animation: fadein 0.3s;
+    /* Opera */
+
 }
+
 @keyframes fadein {
-    from {opacity: 0.5;}
-    to {opacity: 1;}
+    from {
+        opacity: 0.5;
+    }
+
+    to {
+        opacity: 0.8;
+    }
 }
-@-moz-keyframes fadein { /* Firefox */
-    from {opacity: 0.5;}
-    to {opacity: 1;}
+
+@-moz-keyframes fadein {
+
+    /* Firefox */
+    from {
+        opacity: 0.5;
+    }
+
+    to {
+        opacity: 0.8;
+    }
 }
-@-webkit-keyframes fadein { /* Safari and Chrome */
-    from {opacity: 0.5;}
-    to {opacity: 1.5;}
+
+@-webkit-keyframes fadein {
+
+    /* Safari and Chrome */
+    from {
+        opacity: 0.5;
+    }
+
+    to {
+        opacity: 0.85;
+    }
 }
-@-o-keyframes fadein { /* Opera */
-    from {opacity: 0.5;}
-    to {opacity: 1;}
+
+@-o-keyframes fadein {
+
+    /* Opera */
+    from {
+        opacity: 0.5;
+    }
+
+    to {
+        opacity: 0.8;
+    }
 }
+
 .menu {
     height: 3rem;
-    background-color: white;
     border: 0px;
     text-align: center;
-    color: black;
+    color: white;
     font-size: 1rem;
     padding-top: 0.9rem;
+    opacity: 0.8;
 }
 
 body::-webkit-scrollbar {
