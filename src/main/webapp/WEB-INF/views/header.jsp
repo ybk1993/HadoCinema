@@ -10,9 +10,9 @@
       String uri = (String)request.getAttribute( "javax.servlet.forward.request_uri" ); 
 
       if(uri.equals("/beans/main")){ %>
-		<a href="?logo-white"><img src="${pageContext.request.contextPath }/image/logo-white.png" alt="logo" id="logo"></a>
+		<a href="?logo-white"><img src="${pageContext.request.contextPath }/resources/image/logo-white.png" alt="logo" id="logo"></a>
       <%}else{ %>
-        <a href="?logo-black"><img src="${pageContext.request.contextPath }/image/logo-black.png" alt="logo" id="logo"></a>
+        <a href="?logo-black"><img src="${pageContext.request.contextPath }/resources/image/logo-black.png" alt="logo" id="logo"></a>
       <%} %>
       </div>
 
