@@ -1,4 +1,4 @@
-package com.lec.beans;
+package com.lec.controller;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;

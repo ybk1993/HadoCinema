@@ -1,4 +1,4 @@
-package com.lec.beans;
+package com.lec.controller;
 
 import java.text.DateFormat;
 import java.util.Date;
