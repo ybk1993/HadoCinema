@@ -10,7 +10,7 @@
   <jsp:include page="../cdn.jsp"></jsp:include>
 
   <!-- CSS -->
-  <link href="${pageContext.request.contextPath }/CSS/header1.css" rel="stylesheet">
+  <link href="${pageContext.request.contextPath }/resources/CSS/header1.css" rel="stylesheet">
 
   <title>해도시네마 메인</title>
 </head>

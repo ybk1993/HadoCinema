@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
  <jsp:include page="../cdn.jsp"></jsp:include>
-<link href="${pageContext.request.contextPath }/CSS/main_top.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath }/resources/CSS/main_top.css" rel="stylesheet">
 
 </head>
 <body>
@@ -29,17 +29,17 @@
     <div class="carousel-inner" role="listbox">
       <!--First slide-->
       <div class="carousel-item ci active">
-        <img class="d-block w-100" src="${pageContext.request.contextPath }/image/top/nicegirl01.jpg" alt="First slide">
+        <img class="d-block w-100" src="${pageContext.request.contextPath }/resources/image/top/nicegirl01.jpg" alt="First slide">
       </div>
       <!--/First slide-->
       <!--Second slide-->
       <div class="carousel-item ci">
-        <img class="d-block w-100" src="${pageContext.request.contextPath }/image/top/run01.jpg" alt="Second slide">
+        <img class="d-block w-100" src="${pageContext.request.contextPath }/resources/image/top/run01.jpg" alt="Second slide">
       </div>
       <!--/Second slide-->
       <!--Third slide-->
       <div class="carousel-item ci">
-        <img class="d-block w-100" src="${pageContext.request.contextPath }/image/top/thefrom01.jpg" alt="Third slide">
+        <img class="d-block w-100" src="${pageContext.request.contextPath }/resources/image/top/thefrom01.jpg" alt="Third slide">
       </div>
       <!--/Third slide-->
     </div>
