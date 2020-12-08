@@ -10,7 +10,7 @@
   <jsp:include page="../cdn.jsp"></jsp:include>
 
   <!-- CSS -->
-  <link href="${pageContext.request.contextPath }/resources/CSS/header1.css" rel="stylesheet">
+  <link href="${pageContext.request.contextPath }/resources/css/header1.css" rel="stylesheet">
 
   <title>해도시네마 메인</title>
 </head>
@@ -18,7 +18,7 @@
 <body>
  <jsp:include page="../memberModals.jsp"></jsp:include>
  <jsp:include page="../header.jsp"></jsp:include>
-<script src="${pageContext.request.contextPath }/resources/JS/register.js"></script>
+<script src="${pageContext.request.contextPath }/resources/js/register.js"></script>
 </body>
 
 </html>

@@ -5,7 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>결제완료 페이지</title>
-</script>
 </head>
 <body>
 <h1>결제완료 페이지</h1>

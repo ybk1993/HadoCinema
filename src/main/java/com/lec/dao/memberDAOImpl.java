@@ -3,16 +3,12 @@ package com.lec.dao;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.inject.Inject;
-
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.buffer.LimitedDataBufferList;
 import org.springframework.stereotype.Repository;
-
 import com.lec.dto.memberDTO;
 
-import oracle.net.aso.s;
+
 
 @Repository
 public class memberDAOImpl implements memberDAO{

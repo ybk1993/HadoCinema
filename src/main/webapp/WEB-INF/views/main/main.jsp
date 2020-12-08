@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
  <jsp:include page="../cdn.jsp"></jsp:include>
-<link href="${pageContext.request.contextPath }/resources/CSS/main_top.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath }/resources/css/main_top.css" rel="stylesheet">
 
 </head>
 <body>
@@ -250,7 +250,7 @@
   });
   */
 </script>
-  <script src="${pageContext.request.contextPath }/resources/JS/register.js"></script>
-  <script src="${pageContext.request.contextPath }/resources/JS/trailer.js"></script>
+  <script src="${pageContext.request.contextPath }/resources/js/register.js"></script>
+  <script src="${pageContext.request.contextPath }/resources/js/trailer.js"></script>
 </body>
 </html>
