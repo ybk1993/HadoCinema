@@ -1,1 +1,1 @@
-{"resources":{"src/main/webapp/WEB-INF/sql/createtables.sql":{"default-schema":"HC04A","sql-editor-data-source-id":"oracle_thin-176270350e2-25898ea7357f1ae9","default-datasource":"oracle_thin-176270350e2-25898ea7357f1ae9"}}}
+{"resources":{"ERD/hdcinema.sql":{"default-schema":"HC04A","sql-editor-data-source-id":"oracle_thin-1761ddefc73-64b6773acb0f0f2d","default-datasource":"oracle_thin-1761ddefc73-64b6773acb0f0f2d"}}}
