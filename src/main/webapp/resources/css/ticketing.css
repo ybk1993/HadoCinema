@@ -1,0 +1,17 @@
+div div div{
+	display:inline-block;
+}
+
+.row1{
+	background-color:black;
+	color:white;
+	height:50px;
+}
+
+.row2{
+	height:300px;
+}
+
+.row3{
+	height:100px;
+}

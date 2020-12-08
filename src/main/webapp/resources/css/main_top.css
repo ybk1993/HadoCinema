@@ -7,6 +7,29 @@
     border: 1px solid white;
 } */
 
+.trailer {
+      height: 300px;
+      width: 200px;
+    }
+    
+.showlist, .card-footer {
+  background-color: black !important;
+  color: white !important;
+}
+
+.w-115 {
+    width: 114% !important;
+    
+}
+
+.h-15 {
+    height: 18% !important;
+}
+
+.ml-10 {
+	margin-left: -10vw;	
+}
+
 .gradienttop {
     position: absolute;
     background: linear-gradient(to top, rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.815)) !important;
@@ -17,7 +40,7 @@
     position: absolute;
     background: linear-gradient(to top, rgba(0, 0, 0, 0.822), rgba(255, 255, 255, 0)) !important;
     z-index: 2;
-    margin-top: 30.23vw;
+    margin-top: 37.6vw;
 }
 
 a:focus {
@@ -38,11 +61,22 @@ a:hover {
 #login {
     color: rgb(170, 170, 170);
     text-decoration: none;
-    font-size: 10px;
+    font-size: 11px;
+}
+
+#divlogin {
+    position: absolute;
+    right: 17vw;
+    z-index: 1;
 }
 
 #postlabel {
     margin-left: 46px;
+}
+
+#nav-logo {
+    border-bottom: 1px solid rgba(163, 163, 163, 0.726);
+    padding-bottom: 7px;
 }
 
 #logo {

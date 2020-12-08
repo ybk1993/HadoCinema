@@ -9,15 +9,15 @@
       <%
       String uri = (String)request.getAttribute( "javax.servlet.forward.request_uri" ); 
 
-      if(uri.equals("/beans/main")){ %>
+      if(uri.equals("/main")){ %>
 		<a href="?logo-white"><img src="${pageContext.request.contextPath }/resources/image/logo-white.png" alt="logo" id="logo"></a>
       <%}else{ %>
         <a href="?logo-black"><img src="${pageContext.request.contextPath }/resources/image/logo-black.png" alt="logo" id="logo"></a>
       <%} %>
       </div>
 
-      <div class="col-md-2 align-self-end text-center">
-        <a href="" id="login" data-toggle="modal" data-target="#modalLRForm">로그인/회원가입</a>
+       <div class="align-self-end text-right" id="divlogin">
+        <a id="login" data-toggle="modal" data-target="#modalLRForm">로그인/회원가입</a>
       </div>
 
     </div>

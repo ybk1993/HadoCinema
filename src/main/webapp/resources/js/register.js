@@ -1,66 +1,70 @@
-let crawlingData = [];
-const idCheckButton = document.querySelector('.idCheckButton');
-const registerButton = document.querySelector('.registerButton');
-const id = document.querySelector('#id');
-const registerForm = document.querySelector('#registerForm');
-const password = document.querySelector('#password');
-const passwordRepeat = document.querySelector('#passwordRepeat');
-const poster = document.querySelector('#poster');
+'use strict';
+
+const regOk = document.getElementById('regOk');
+const id = document.getElementById('userid');
 let idFlag = false;
 
-document.addEventListener('DOMContentLoaded', () => {
-    idCheckButton.addEventListener('click', function() {
-        console.log(document.querySelector('#id').value);
-        idCheck();
-    });
-    add();
+toastr.options = {
+    positionClass: 'toast-top-full-width',
+    progressBar: true,
+    timeOut: 1000,
+};
 
-    registerButton.addEventListener('click', () => {
-        registerForm.submit();
+$(document).ready(()=>{
+
+    $('.modal').on('hidden.bs.modal', function (e) {
+        console.log('modal close');
+        $('form').each(function() {
+            this.reset();
+        });
     });
+
+    $('#userid').focusout(function() {
+
+        // $(this).addClass('hidden');
+        
+        let chkId = $('#userid').val();
+        $.ajax({
+            url: '/member/' + chkId,
+            type: 'get',
+            cache: false,
+            data: { id: chkId },
+            success: function(data) {
+                console.log(data);
+                idCheckMessage(data);
+                if(data == 'true'){
+                    $('#userid').val('').blur();
+                }
+            },
+        });
+    });
+
+    
+    regOk.addEventListener('click', function() {
+        console.log("가입 시도!");
+        submit(); 
+        
+    });
+    
 });
 
 function idCheck() {
+	let chkId = document.getElementById('userid').value;
     $.ajax({
-        url: 'idCheck.do',
+        url: '/member/' + chkId,
         type: 'get',
-        data: { id: document.querySelector('#id').value },
+        cache: false,
+        data: { id: document.getElementById('userid').value },
         success: function(data) {
             console.log(data);
             idCheckMessage(data);
+            //document.getElementById('txt').innerHTML = data;
         },
     });
-}
-
-function add() {
-    $.ajax({
-        url: 'crawling.do',
-        type: 'get',
-        success: function(data) {
-            crawlingData = setData(data);
-            console.log(crawlingData);
-            if(crawlingData.length === 0){
-            	location.href="moveRegister.do";
-            }
-            let randomNumber = Math.floor(Math.random() * 7);
-            console.log(randomNumber);
-            poster.setAttribute('src', crawlingData[randomNumber].img);
-        },
-    });
-}
-
-function setData(data) {
-    data = JSON.parse(data);
-
-    return data;
 }
 
 function idCheckMessage(data) {
-    toastr.options = {
-        positionClass: 'toast-top-full-width',
-        progressBar: true,
-        timeOut: 1000,
-    };
+    
     if (id.value.length < 3) {
         toastr.error('최소 4글자 이상의 아이디를 입력해 주세요', '아이디 확인', {
             timeOut: 3000,
@@ -83,37 +87,184 @@ function idCheckMessage(data) {
     }
 }
 
-// register.jsp의 onChange함수에 넣었다.
-function passwordValidate() {
-    if (password.value == passwordRepeat.value) {
-        toastr.options = {
-            positionClass: 'toast-top-right',
-            progressBar: true,
-            timeOut: 1000,
-        };
-        toastr.success('비밀번호가 일치합니다', '비밀번호 확인', {
-            timeOut: 3000,
-        });
-//        registerButton.removeAttribute('disabled');
-//        registerButton.classList.toggle('clickedButton', false);
+function submit() {
 
-        if(idFlag === true){
-        	registerButton.removeAttribute('disabled');
-            registerButton.classList.toggle('clickedButton', false);
-        }
-        return true;
-    } else {
-        toastr.options = {
-            positionClass: 'toast-top-right',
-            progressBar: true,
-            timeOut: 1000,
-        };
-        registerButton.classList.toggle('clickedButton', true);
-        toastr.error('비밀번호가 일치하지 않습니다', '비밀번호 확인', {
+    
+    if(!sendit()){
+        console.log('가입 실패!');
+
+    }else{    
+            let formData = $('#regform').serialize(); // serialize 사용
+            console.log(formData);
+            
+            $.ajax({
+            url: "register",
+            type: "POST",
+            cache: false,
+            
+            data: formData,
+            
+            success: function(data){
+                console.log('registerOk의 값 : '+data);
+                toastr.success('회원가입 성공!', '회원가입', {
+                    timeOut: 3000,
+                });
+                $('#userid').val('').blur();
+                $('#userpw').val('').blur();
+                $('#name').val('').blur();
+                $('#phone').val('').blur();
+                $('#useremail').val('').blur();
+                $('#zipcode').val('').blur();
+                $('#address1').val('').blur();
+                $('#address2').val('').blur();
+                
+                
+
+            },
+            error: function (request, status, error){        
+                console.log(error);
+            }
+        });
+    }
+    
+} 
+
+// 유효성 검사 return boolean
+function sendit(){
+    
+    // document.querySelector()
+    // 객체 저장
+    const userid = document.getElementById('userid');
+    const userpw = document.getElementById('userpw');
+    const name = document.getElementById('name');
+    const phone = document.getElementById('phone');
+    const email = document.getElementById('useremail');
+    const zipcode = document.getElementById('zipcode');
+    const address1 = document.getElementById('address1');
+    const address2 = document.getElementById('address2');
+    
+    
+    // 정규식
+    const expPwText = /^.*(?=^.{4,20}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&*()+=]).*$/;
+    const expNameText = /[가-힣]+$/;
+    const expHpText = /^\d{3}-\d{3,4}-\d{4}$/;
+    const expEmailText = /^[A-Za-z0-9\.\-]+@[A-Za-z0-9\.\-]+\.[A-Za-z0-9\.\-]+$/;
+
+    if(userid.value == ''){
+        toastr.error('아이디를 입력하세요.', '아이디', {
             timeOut: 3000,
         });
+        userid.focus();
         return false;
     }
+    if(userid.value.length < 4 || userid.value.length > 20){
+        toastr.error('아이디를 4자이상 20자 이하로 입력하세요.', '아이디', {
+            timeOut: 3000,
+        });
+        userid.focus();
+        return false;
+    }
+    if(userpw.value == ''){
+        toastr.error('비밀번호를 입력하세요.', '비밀번호 입력', {
+            timeOut: 3000,
+        });
+        userpw.focus();
+        return false;
+    }
+    
+    if(expPwText.test(userpw.value) == false){
+        toastr.error('비밀번호 형식을 확인하세요.', '비밀번호 형식', {
+            timeOut: 3000,
+        });
+        userpw.focus();
+        return false;
+    }
+    if(expNameText.test(name.value) == false){
+        toastr.error('이름 형식을 확인하세요.', '이름 형식', {
+            timeOut: 3000,
+        });
+        name.focus();
+        return false;
+    }
+    if(expHpText.test(phone.value) == false){
+        toastr.error('휴대폰 번호 형식을 확인하세요.', '휴대폰 형식', {
+            timeOut: 3000,
+        });
+        phone.focus();
+        return false;
+    }
+    if(expEmailText.test(email.value) == false){
+        toastr.error('이메일 형식을 확인하세요.', '이메일 형식', {
+            timeOut: 3000,
+        });
+        email.focus();
+        return false;
+    }
+    
+    if(zipcode.value == ''){
+        toastr.error('우편번호를 입력하세요.', '주소 입력', {
+            timeOut: 3000,
+        });
+        userpw.focus();
+        return false;
+    }
+    if(address1.value == ''){
+        toastr.error('주소를 입력하세요.', '주소 입력', {
+            timeOut: 3000,
+        });
+        userpw.focus();
+        return false;
+    }
+    if(address2.value == ''){
+        toastr.error('상세주소를 입력하세요.', '주소 입력', {
+            timeOut: 3000,
+        });
+        userpw.focus();
+        return false;
+    }
+
+    return true; // 페이지 이동
+    
+} // sendit() 종료
+
+
+
+
+// 카카오 주소찾기 api
+function daumPostcode() {
+    new daum.Postcode({
+        oncomplete: function(data) {
+            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+            // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+            // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+            var addr = ''; // 주소 변수
+            var extraAddr = ''; // 참고항목 변수
+
+            //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+            if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                addr = data.roadAddress;
+            } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                addr = data.jibunAddress;
+            }
+
+            // 우편번호와 주소 정보를 해당 필드에 넣는다.
+            //document.getElementById('zipcode').focus();
+            //document.getElementById('zipcode').value = data.zonecode;
+            $('#zipcode').val(data.zonecode);
+            // document.getElementById("address1").focus();
+            // document.getElementById("address1").value = addr;
+            $('#address1').val(addr).blur();
+            
+            
+            $('#zipcode').focus();
+            $('#zipcode').blur();
+            $('#address1').focus();
+            $('#address1').blur();
+            // 커서를 상세주소 필드로 이동한다.
+            // document.getElementById("address2").focus();
+            $('#address2').focus();
+
+        }
+    }).open();
 }
-
-

@@ -2,9 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<body>
-
-
 <!-- Modal: Login / Register Form -->
 <div class="modal fade" id="modalLRForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
 aria-hidden="true">
@@ -41,20 +38,22 @@ aria-hidden="true">
 
             <!--Body-->
             <div class="modal-body mb-1">
+            <form action="" method="post" name="loginfrm" id="loginfrm">
               <div class="md-form form-sm mb-5">
                 <i class="fas fa-user prefix"></i>
-                <input type="email" id="modalLRInput10" class="form-control form-control-sm validate">
-                <label data-error="wrong" data-success="right" for="modalLRInput10">아이디</label>
+                <input type="text" id="loginid" class="form-control form-control-sm validate">
+                <label>아이디</label>
               </div>
 
               <div class="md-form form-sm mb-4">
                 <i class="fas fa-lock prefix"></i>
-                <input type="password" id="modalLRInput11" class="form-control form-control-sm validate">
-                <label data-error="wrong" data-success="right" for="modalLRInput11">비밀번호</label>
+                <input type="password" id="loginpw" class="form-control form-control-sm validate">
+                <label>비밀번호</label>
               </div>
               <div class="text-center mt-2">
                 <button class="btn btn-info">로그인 <i class="fas fa-sign-in ml-1"></i></button>
               </div>
+            </form>
             </div>
             <!--Footer-->
             <div class="modal-footer">
@@ -70,20 +69,22 @@ aria-hidden="true">
 
             <!--Body-->
             <div class="modal-body mb-1">
+            <form action="" method="post" name="findPwfrm" id="findPwfrm">
               <div class="md-form form-sm mb-5">
                 <i class="fas fa-user prefix"></i>
-                <input type="email" id="modalLRInput10" class="form-control form-control-sm validate">
-                <label data-error="wrong" data-success="right" for="modalLRInput10">아이디</label>
+                <input type="text" id="idFI" class="form-control form-control-sm validate">
+                <label>아이디</label>
               </div>
 
               <div class="md-form form-sm mb-5">
                 <i class="fas fa-envelope prefix"></i>
-                <input type="email" id="email" class="form-control form-control-sm validate">
-                <label data-error="wrong" data-success="right" for="email">이메일</label>
+                <input type="email" id="emailFI" class="form-control form-control-sm validate">
+                <label>이메일</label>
               </div>
               <div class="text-center mt-2">
                 <button class="btn btn-info">임시비밀번호 발송 <i class="fas fa-sign-in ml-1"></i></button>
               </div>
+              </form>
             </div>
             <!--Footer-->
             <div class="modal-footer">
@@ -101,18 +102,19 @@ aria-hidden="true">
 
             <!--Body-->
             <div class="modal-body mb-1">
+            <form action="" method="post" name="findIdfrm" id="findIdfrm">
               <div class="md-form form-sm mb-5">
                 <i class="fas fa-user prefix"></i>
-                <input type="email" id="modalLRInput10" class="form-control form-control-sm validate">
-                <label data-error="wrong" data-success="right" for="modalLRInput10">이름</label>
+                <input type="text" id="nameFP" class="form-control form-control-sm validate">
+                <label>이름</label>
               </div>
 
               <div class="md-form form-sm mb-5">
                 <i class="fas fa-envelope prefix"></i>
-                <input type="email" id="email" class="form-control form-control-sm validate">
-                <label data-error="wrong" data-success="right" for="email">이메일</label>
+                <input type="email" id="emailFP" class="form-control form-control-sm validate">
+                <label>이메일</label>
               </div>
-
+			</form>
             </div>
             <!--Footer-->
             <div class="modal-footer">
@@ -131,80 +133,71 @@ aria-hidden="true">
 
             <!--Body-->
             <div class="modal-body">
-
-              <form name="regform" id="regform" method="post" action="" onsubmit="return sendit()">
+													<!-- onsubmit="return sendit()" -->
+              <form name="regform" id="regform" method="post" action="">
                 <div class="md-form form-sm mb-5">
                   <i class="fas fa-user prefix"></i>
-                  <input type="text" id="userid" class="form-control form-control-sm validate">
-                  <label data-error="wrong" data-success="right" for="userid">아이디</label>
+                  <input type="text" id="userid" name="userid" class="form-control form-control-sm validate">
+                  <label for="userid">아이디</label>
                 </div>
 
                 <div class="md-form form-sm mb-5">
                   <i class="fas fa-lock prefix"></i>
-                  <input type="password" id="userpw" class="form-control form-control-sm validate">
-                  <label data-error="wrong" data-success="right" for="userpw">비밀번호</label>
-                </div>
-
-                <div class="md-form form-sm mb-4">
-                  <i class="fas fa-lock prefix"></i>
-                  <input type="password" id="userpw_re" class="form-control form-control-sm validate">
-                  <label data-error="wrong" data-success="right" for="userpw_re">비밀번호 확인</label>
+                  <input type="password" id="userpw" name="userpw" class="form-control form-control-sm validate">
+                  <label for="userpw">비밀번호</label>
                 </div>
 
                 <div class="md-form form-sm mb-4">
                   <i class="fas fa-signature prefix"></i>
-                  <input type="text" id="username" class="form-control form-control-sm validate">
-                  <label data-error="wrong" data-success="right" for="username">이름</label>
+                  <input type="text" id="name" name="name" class="form-control form-control-sm validate">
+                  <label for="name">이름</label>
                 </div>
 
                 <div class="md-form form-sm mb-4">
                   <i class="fas fa-mobile prefix"></i>
-                  <input type="text" id="hp" class="form-control form-control-sm validate">
-                  <label data-error="wrong" data-success="right" for="hp">휴대폰 번호</label>
+                  <input type="text" id="phone" name="phone" class="form-control form-control-sm validate">
+                  <label>휴대폰 번호</label>
                 </div>
-
-                <div class="md-form form-sm mb-5">
+                
+                <div class="md-form form-sm mb-4">
                   <i class="fas fa-envelope prefix"></i>
-                  <input type="email" id="email" class="form-control form-control-sm validate">
-                  <label data-error="wrong" data-success="right" for="email">이메일</label>
+                  <input type="text" id="useremail" name="email" class="form-control form-control-sm validate">
+                  <label>이메일</label>
                 </div>
 
                 <div class="md-form form-sm mb-4">
                   <div class="row">
-                    <div class="col-md-8">
+                    <div class="col-md-9">
                       <i class="fas fa-home prefix"></i>
-                      <input type="text" name="zipcode" id="sample6_postcode"
+                      <input type="text" name="zipcode" id="zipcode"
                         class="form-control form-control-sm validate">
-                      <label id="postlabel" data-error="wrong" data-success="right" for="sample6_postcode">우편번호</label>
+                      <label style="left: 15px;">우편번호</label>
                     </div>
-                    <div class="col-md-3">
                       <input type="button" class="btn btn-outline-info btn-sm waves-effect ml-auto" value="검색"
-                        onclick="sample6_execDaumPostcode()"/>
-                    </div>
+                        onclick="daumPostcode()"/>
                   </div>
                 </div>
 
                 <div class="md-form form-sm mb-4">
                   <i class="fas fa-home prefix"></i>
-                  <input type="text" name="address1" id="sample6_address" class="form-control form-control-sm validate">
-                  <label data-error="wrong" data-success="right" for="sample6_address">주소</label>
+                  <input type="text" name="address1" id="address1" class="form-control form-control-sm validate">
+                  <label>주소</label>
                 </div>
 
                 <div class="md-form form-sm mb-4">
                   <i class="fas fa-home prefix"></i>
-                  <input type="text" name="address3" id="sample6_detailAddress"
+                  <input type="text" name="address2" id="address2"
                     class="form-control form-control-sm validate">
-                  <label data-error="wrong" data-success="right" for="sample6_detailAddress">상세주소</label>
+                  <label>상세주소</label>
                 </div>
 
-                <div class="text-center form-sm mt-2">
-                  <input type="submit" class="btn btn-info" value="가입완료"> <i class="fas fa-sign-in ml-1"></i></button>
-                </div>
               </form>
+                <div class="text-center form-sm mt-2">
+                  <input type="button" id="regOk" class="btn btn-info" value="가입하기"/> <i class="fas fa-sign-in ml-1"></i>
+                </div>
             </div>
             <!--Footer-->
             <div class="modal-footer">
-
               <button type="button" class="btn btn-outline-info waves-effect ml-auto" data-dismiss="modal">닫기</button>
             </div>
           </div>
@@ -218,4 +211,3 @@ aria-hidden="true">
   </div>
 </div>
  <!-- Modal: Login / Register Form -->
-</body>

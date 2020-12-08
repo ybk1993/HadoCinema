@@ -18,7 +18,7 @@
 <body>
  <jsp:include page="../memberModals.jsp"></jsp:include>
  <jsp:include page="../header.jsp"></jsp:include>
-
+<script src="${pageContext.request.contextPath }/resources/JS/register.js"></script>
 </body>
 
 </html>

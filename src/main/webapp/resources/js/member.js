@@ -7,7 +7,7 @@ function sendit(){
     const userpw = document.getElementById('userpw');
     const userpw_re = document.getElementById('userpw_re');
     const username = document.getElementById('username');
-    const hp = document.getElementById('hp');
+    const hp = document.getElementById('phone');
     const email = document.getElementById('email');
     
     const isSsn = document.getElementById('isSsn');
@@ -63,18 +63,6 @@ function sendit(){
     return true // 페이지 이동
 }
 
-// function ssnCheck(){
-    
-//     const isSsn = document.getElementById('isSsn');
-
-//     if(result == s13){
-//         //alert('유효한 주민등록번호입니다.');
-//         isSsn.value = 'true';
-//     }else{
-//         //alert('유효하지 않은 주민등록번호입니다.');
-//     }
-// }
-
 function sample6_execDaumPostcode() {
     new daum.Postcode({
         oncomplete: function(data) {
@@ -127,4 +115,5 @@ function sample6_execDaumPostcode() {
         }
     }).open();
 }
+
 

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<!-- SQL Error [2291] [23000]: ORA-02291: 
+integrity constraint (HC04A.FK_BOOKING_B_MOVIE_mem_uid) 
+violated - parent key not found
+
+CREATE TABLE MEMBERS
+(
+    mem_uid            NUMBER           NOT NULL, 
+    uesrid         VARCHAR2(20)     NOT NULL UNIQUE, 
+    userpw         VARCHAR2(20)     NOT NULL, 
+    name           VARCHAR2(20)     NOT NULL, 
+    email          VARCHAR2(100)    NOT NULL, 
+    phone          VARCHAR2(20)     NOT NULL, 
+    zipcode        VARCHAR2(20)     NOT NULL, 
+    address1       VARCHAR2(100)    NOT NULL, 
+    address2       VARCHAR2(100)    NOT NULL, 
+    signupdate    DATE             NOT NULL, 
+    status         CHAR(1)          NOT NULL, 
+    booking        VARCHAR2(300)    NULL, 
+    cancle         VARCHAR2(300)    NULL, 
+    point          NUMBER           NULL, 
+    CONSTRAINT MEMBERS_PK PRIMARY KEY (mem_uid)
+);
+THEATERS, SCREENS, SEATS, TICKET, MOVIE, BOOKING
+ -->
+ 
+ 
+ 
+<mapper namespace="memberMapper">
+	<!-- 모든 회원 목록 -->
+	
+	<select id="allMember" resultType="com.lec.dto.memberDTO">
+		SELECT * FROM MEMBERS
+	</select> 
+	 
+	
+	<!-- 중복체크 -->
+	<select id="getMemUserid" resultType="java.lang.String">
+		SELECT userid FROM MEMBERS WHERE userid = #{userid}
+	</select>
+	
+	<!-- 회원 가입 -->
+	<insert id="register" parameterType="com.lec.dto.memberDTO">
+		INSERT INTO MEMBERS(mem_uid, userid, userpw, name, email, phone, zipcode, 
+							address1, address2, signupdate, status, point)
+			 VALUES(MEMBERS_SEQ.NEXTVAL, #{userid}, #{userpw}, #{name}, #{email}, #{phone}, #{zipcode}, 
+							#{address1}, #{address2}, SYSDATE, '0', 0)
+	</insert>
+	
+	<!-- 로그인 -->
+	<select id="login" parameterType="com.lec.dto.memberDTO" resultType="com.lec.dto.memberDTO">
+		SELECT userid, name, email, phone, 
+				zipcode, address1, address2, signupdate, 
+	  			status, booking, cancle, point
+	  			FROM MEMBERS WHERE userid = "apple123" and userpw = "1111"
+<!-- 
+		FROM MEMBERS WHERE userid = #{userid} and userpw = #{userpw}
+ -->
+	</select>
+	
+	
+	<!-- 회원 정보 -->
+	<select id="getMemInfo" parameterType="com.lec.dto.memberDTO" resultType="com.lec.dto.memberDTO">
+		SELECT userid, userpw, name, email, phone, zipcode, 
+			  				 address1, address2, signupdate, status, booking, cancle, point
+		FROM MEMBERS WHERE userid = #{userid}
+	</select>
+	
+	<!-- 아이디 찾기 -->
+	<select id="findMemUserid" resultType="com.lec.dto.memberDTO">
+		SELECT userid FROM MEMBERS WHERE name = #{name} AND email = #{email}
+	</select>
+
+	<!-- 비번 찾기 -->
+	<select id="findMemUserpw" resultType="com.lec.dto.memberDTO">
+		SELECT userpw FROM MEMBERS WHERE userid = #{userid} AND email = #{email}
+	</select>
+ 
+	<!-- 메일 중복 체크 -->
+	<select id="chkMemEmail" resultType="com.lec.dto.memberDTO">
+		SELECT email FROM MEMBERS WHERE email= #{email}
+	</select>
+	
+	<!-- 회원정보수정 -->
+	<update id="updateMemInfo">
+		UPDATE MEMBERS 
+		SET userpw = #{userpw}, email = #{email}, phone = #{phone}, 
+			zipcode = #{zipcode}, address1 = #{address1}, address2 = #{address2}
+		WHERE userid = #{userid}
+	</update>
+	
+	<!-- 탈퇴하기 -->
+	<update id="withdrawMem">
+		UPDATE MEMBERS SET status = #{status} WHERE userid = #{userid}
+	</update>
+	
+	<!-- 포인트 조회 -->
+	<select id="getMemPoint" resultType="com.lec.dto.memberDTO">
+		SELECT userid, point FROM MEMBERS WHERE USERID = #{userid}
+	</select>
+	
+	<!-- 예매내역 조회 -->
+	<select id="getMembooking" resultType="com.lec.dto.memberDTO">
+		SELECT  B.BOOKING_STATUS, 
+				M.userID, 
+				V.MOVIE_NAME, 
+				T.THEATER_NAME, 
+				C.SCREEN_NAME, 
+				S.SEAT_NUM, 
+				K.TICKET_PRICE 
+		FROM BOOKING B
+		JOIN MEMBERS M
+		   ON B.B_ID = M.userID 
+		JOIN THEATERS T
+		   ON B.B_THEATER_mem_uid = T.THEATER_mem_uid 
+		JOIN SCREENS C
+		   ON B.B_SCREEN_mem_uid  = C.SCREEN_mem_uid 
+		JOIN MOVIE V
+		   ON B.B_MOVIE_mem_uid = V.MOVIE_mem_uid 
+		JOIN TICKET K
+		   ON B.B_TICKET_mem_uid = K.TICKET_mem_uid
+		JOIN SEATS S
+		   ON B.B_SEAT_mem_uid = S.SEAT_mem_uid
+		WHERE B.B_ID = #{userid}
+	</select>
+ 
+
+	
+</mapper>
+
