@@ -6,9 +6,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Document</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/reset.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/header.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/seat.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/reset.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/header.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/seat.css">
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <link rel='stylesheet'
 	href='//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css' />
@@ -175,7 +175,7 @@
 						<div class="ticket-price-title">가격</div>
 						<div class="ticket-price">0원</div>
 					</div>
-					<form action="moveKakao.do" class="seatForm" method="post">
+					<form action="payment.do" class="seatForm" method="post">
 						<input type="hidden" class="title" name="title"> <input
 							type="hidden" class="selectedTheater" name="selectedTheater">
 						<input type="hidden" class="reserveDate" name="movieDate">
@@ -188,7 +188,7 @@
 						<!-- 결제 정보 -->
 						<input type="hidden" class="payMoney" name="payMoney">
 						<button type="button" class="reserve-button">
-							결제하기<img src="${pageContext.request.contextPath}/resources/images/payment_icon_yellow_medium.png">
+							결제하기<img src="${pageContext.request.contextPath}/resources/images/payment.png">
 						</button>
 					</form>
 				</div>

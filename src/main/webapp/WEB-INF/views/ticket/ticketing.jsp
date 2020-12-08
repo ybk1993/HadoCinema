@@ -18,51 +18,25 @@
 
 </head>
 
-<body>
-    <div class="header-nav-wrapper">
-        <header class="header">
-            <div class="header-inner">
-                <div><button><i class="zmdi zmdi-apps"></i><span>&nbsp;CGV APP</span></button></div>
-                <div><button><i class="zmdi zmdi-facebook-box"></i><span>&nbsp;Like</span></button></div>
-                <div><button><i class="zmdi zmdi-instagram"></i><span>&nbsp;follow</span></button></div>
-                <div><button>알뜰한 영화 관람법</button></div>
-            </div>
-            <div class="header-inner">
-                
- 
-                	<div><button>test님 환영합니다</button></div>
-                	<div><a href="moveMypage.do"><button>마이페이지</button></a></div>
-                	<div><a href="logout.do"><button>로그아웃</button></a></div>
-              
-            </div>
-        </header>
-        <nav class="nav-wrapper">
-            <div class="logo-wrapper"><a href="moveMain.do"><img class="cgvLogo" src="${pageContext.request.contextPath}/resources/images/cgv.png"></a></div>
-            <div class="nav-content">
-                <div class="movieLogo-wrapper"><img class="cgvMovie" src="${pageContext.request.contextPath}/resources/images/h2_movie.png"></div>
-                <div class="nav-inner">
-                    <div><button>영화</button></div>
-                    <div><button>예매</button></div>
-                    <div><button>극장</button></div>
-                    <div><button>이벤트&컬쳐</button></div>
-                    <div class="search-wrapper"><input><button class="searchButton">검색</button></div>
-                </div>
-            </div>
-            <div></div>
-            <div></div>
-        </nav>
-    </div>
     <div class="reserve-container">
         <div class="movie-part">
             <div class="reserve-title">영화</div>
-            <div class="sort-wrapper">
-                <div class="sort-rate sort-selected">예매율순</div>
-                <div class="sort-korean">가나다순</div>
-            </div>
              <div class="movie-list-wrapper">
                 <div class="movie-list">
-                    <%-- <div class="movie-list-age">15</div>
-                    <div class="movie-list-title">1917</div> --%>
+                    <div class="movie-list-age">15세 이상</div>
+                    <button class="movie-list-title">1917</button>         
+                </div>
+                 <div class="movie-list">
+                    <div class="movie-list-age">청소년 관람불가</div>
+                    <button class="movie-list-title">1917</button>         
+                </div>
+                 <div class="movie-list">
+                    <div class="movie-list-age">전체</div>
+                    <button class="movie-list-title">1917</button>         
+                </div>
+                 <div class="movie-list">
+                    <div class="movie-list-age">15</div>
+                    <button class="movie-list-title">1917</button>         
                 </div>
             </div>
         </div>
@@ -72,12 +46,6 @@
             </div>
             <div class="theater-container">
                 <div class="theater-wrapper">
-                    <div class="theater-location-wrapper">
-                        <button class="theater-location">서울(30)</button>
-                        <button class="theater-location">경기(43)</button>
-                        <button class="theater-location">인천(10)</button>
-                        <button class="theater-location">강원(5)</button>
-                    </div>
                     <div class="theater-place-wrapper">
                         <button class="theater-place">천호</button>
                         <button class="theater-place">강변</button>
@@ -130,7 +98,7 @@
                 </div>
             </div>
             <div>
-            <form class="moveSeatForm" action="moveSeat.do" method="post">
+            <form class="moveSeatForm" action="choiceSeat.do" method="post">
             <input type="hidden" class="title" name="title">
             <input type="hidden" class="movieAge" name="movieAge">
             <input type="hidden" class="selectedTheater" name="selectedTheater">
@@ -142,6 +110,6 @@
         </div>
 
     </div>
-    <script src="${pageContext.request.contextPath}/resources/js/reserve.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/ticket.js"></script>
 </body>
 </html>
