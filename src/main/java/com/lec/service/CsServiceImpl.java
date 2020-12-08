@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.lec.dao.CsDAO;
+import com.lec.dto.Criteria;
 import com.lec.dto.CsDTO;
 
 
@@ -24,8 +25,27 @@ public class CsServiceImpl implements CsService {
 		dao.write(csDTO);
 	}
 
-	
 
+
+	// 게시물 목록 조회
+	@Override
+	public List<CsDTO> list(Criteria cri) throws Exception {
+
+		return dao.list(cri);
+	}
+
+	// 게시물 총 갯수
+	@Override
+	public int listCount() throws Exception {
+		return dao.listCount();
+	}
+
+	// 게시물 읽기
+	@Override
+	public CsDTO read(int cs_uid) throws Exception {
+
+		return dao.read(cs_uid);
+	}
 }
 
 

@@ -8,8 +8,17 @@ public class CsDTO {
 	private int cs_uid;
 	private Date cs_regdate;
 	private String cs_status;
+	private String cs_subject;
 	private String cs_content;
-
+	private String cs_answer;
+	
+	
+	public String getCs_answer() {
+		return cs_answer;
+	}
+	public void setCs_answer(String cs_answer) {
+		this.cs_answer = cs_answer;
+	}
 	public String getCs_memid() {
 		return cs_memid;
 	}
@@ -34,6 +43,12 @@ public class CsDTO {
 	public void setCs_status(String cs_status) {
 		this.cs_status = cs_status;
 	}
+	public String getCs_subject() {
+		return cs_subject;
+	}
+	public void setCs_subject(String cs_subject) {
+		this.cs_subject = cs_subject;
+	}
 	public String getCs_content() {
 		return cs_content;
 	}
@@ -41,6 +56,11 @@ public class CsDTO {
 		this.cs_content = cs_content;
 	}
 	
+	@Override
+	public String toString() {
+		return "CsDTO [cs_memid=" + cs_memid + ", cs_uid=" + cs_uid + ", cs_regdate=" + cs_regdate + ", cs_status="
+				+ cs_status + ", cs_subject=" + cs_subject + ", cs_content=" + cs_content + "]";
+	}
 
 
 }
