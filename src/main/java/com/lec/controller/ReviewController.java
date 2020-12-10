@@ -49,7 +49,7 @@ public class ReviewController {
 		
 		service.writeReview(reviewDTO);
 		
-		return "redirect:/mypage/readView";
+		return "redirect:/review/reviewLists";
 	}
 	
 	

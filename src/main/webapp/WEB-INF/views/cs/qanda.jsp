@@ -51,6 +51,11 @@
 						<tbody>
 							<tr>
 								<td>
+									<label for="cs_subject">제목</label><textarea id="cs_subject" name="cs_subject" class="chk" title="내용을 입력하세요."></textarea>
+								</td>
+							</tr>
+							<tr>
+								<td>
 									<label for="cs_content">내용</label><textarea id="cs_content" name="cs_content" class="chk" title="내용을 입력하세요."></textarea>
 								</td>
 							</tr>

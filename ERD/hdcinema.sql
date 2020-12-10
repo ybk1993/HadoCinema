@@ -347,3 +347,25 @@ SELECT * FROM REVIEW;
 
 SELECT review_uid, r_mem_id, r_movie_uid, review_content, review_grade, review_heart, review_regdate , 
 ROW_NUMBER() OVER(ORDER BY review_uid DESC) AS  RNUM FROM REVIEW WHERE R_MOVIE_UID = 1 ;
+
+CREATE TABLE OTHERREVIEWS
+(
+    reviewUid2        NUMBER            NOT NULL, 
+    rMemId2           VARCHAR2(100)     NULL, 
+    rMovieName2       VARCHAR2(100)     NULL, 
+    reviewContent2    CLOB              NULL, 
+    reviewGrade2      VARCHAR2(100)     NULL, 
+    reviewHeart2      NUMBER            DEFAULT '0' NOT NULL,
+    reviewRegdate2    DATE              NULL, 
+    CONSTRAINT OTHERREVIEWS_PK PRIMARY KEY (reviewUid2)
+);
+
+INSERT INTO OTHERREVIEWS(reviewUid2, rMovieName2,  reviewContent2, reviewGrade2) 
+VALUES(OTHERREVIEWS_SEQ.nextval, '인셉션', '굳굳', 5);
+
+SELECT * FROM OTHERREVIEWS;
+
+
+CREATE SEQUENCE OTHERREVIEWS_SEQ START WITH 1 INCREMENT BY 1 NOCACHE;
+
+DROP TABLE OTHERREVIEWS CASCADE CONSTRAINTS;

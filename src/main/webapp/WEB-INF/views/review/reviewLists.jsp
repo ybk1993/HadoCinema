@@ -15,6 +15,8 @@
 	 
 	 	<title>게시판</title>
 	</head>
+	
+
 	<body>
 		<div class="container">
 			<header>
@@ -29,11 +31,8 @@
 						<div class="search row">
 						<div class="col-xs-2 col-sm-2">
 							<select name="searchType" class="form-control">
-								<option value="n"<c:out value="${scri.searchType == null ? 'selected' : ''}"/>>모든영화</option>
-								<option value="t"<c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>제목</option>
-								<option value="c"<c:out value="${scri.searchType eq 'c' ? 'selected' : ''}"/>>내용</option>
+								<option value="t"<c:out value="${scri.searchType eq 't' ? 'selected' : ''}"/>>영화 제목</option>
 								<option value="w"<c:out value="${scri.searchType eq 'w' ? 'selected' : ''}"/>>작성자</option>
-								<option value="tc"<c:out value="${scri.searchType eq 'tc' ? 'selected' : ''}"/>>제목+내용</option>
 							</select>
 						</div>
 						 
@@ -49,30 +48,98 @@
 						<script>
 							 $(function(){
 								 $('#searchBtn').click(function() {
-									 self.location = "list" + '${pageMaker.makeQuery(1)}' + "&searchType=" + $("select option:selected").val() + "&keyword=" + encodeURIComponent($('#keywordInput').val());
+									 self.location = "reviewLists" + '${pageMaker.makeQuery(1)}' + "&searchType=" + $("select option:selected").val() + "&keyword=" + encodeURIComponent($('#keywordInput').val());
 								 });
 							 });   
 						</script>
 					</div>
+					<br><br>
     <div class="row">
     <c:forEach items="${list}" var = "list">
             <div class="col-lg-3 col-md-4 col-sm-6">
                 <div class="card-box project-box">
+                        <p id="c"><c:out value="#${list.reviewUid}" /></p>
+                    <p  style="text-align:center;font-size: 20px;font-style: bold;">
+                    <c:out value="${list.rMovieName}" /></p>
+                      
+                     <c:choose>
+				     <c:when test="${list.reviewGrade == 1}">
+				     
+				     <div class="starRev">
+ 					 <span class="star half">별1</span>
+			     	 </div>
+					 </c:when>
+				     <c:when test="${list.reviewGrade == 2}">
+				     <div class="starRev">  
+ 					 <span class="star">별2</span>
+			     	 </div>
+					 </c:when>
+				     <c:when test="${list.reviewGrade == 3}">
+				     <div class="starRev">
+ 					 <span class="star">별1</span>
+ 					 <span class="star half">별1</span>
+			     	 </div>
+					 </c:when>
+				     <c:when test="${list.reviewGrade == 4}">
+                     <div class="starRev">		     
+ 					 <span class="star">별1</span>
+ 					 <span class="star">별1</span>
+			     	 </div>
+					 </c:when>
+				     <c:when test="${list.reviewGrade == 5}">
+                     <div class="starRev">		     
+ 					 <span class="star">별1</span>
+ 					 <span class="star">별1</span>
+ 					 <span class="star half">별1</span>
+			     	 </div>
+					 </c:when>
+				     <c:when test="${list.reviewGrade == 6}">
+                     <div class="starRev">		     
+ 					 <span class="star">별1</span>
+ 					 <span class="star">별1</span>
+ 					 <span class="star">별1</span>
+			     	 </div>
+					 </c:when>
+				     <c:when test="${list.reviewGrade == 7}">
+                     <div class="starRev">		     
+ 					 <span class="star">별1</span>
+ 					 <span class="star">별1</span>
+ 					 <span class="star">별1</span>
+ 					 <span class="star half">별1</span>
+			     	 </div>
+					 </c:when>
+				     <c:when test="${list.reviewGrade == 8}">
+                     <div class="starRev">		     
+ 					 <span class="star">별1</span>
+ 					 <span class="star">별1</span>
+ 					 <span class="star">별1</span>
+ 					 <span class="star">별1</span>
+			     	 </div>
+					 </c:when>
+				     <c:when test="${list.reviewGrade == 9}">
+                     <div class="starRev">		     
+ 					 <span class="star">별1</span>
+ 					 <span class="star">별1</span>
+ 					 <span class="star">별1</span>
+ 					 <span class="star">별1</span>
+ 					 <span class="star half">별1</span>
+			     	 </div>
+					 </c:when>
+				     <c:when test="${list.reviewGrade == 10}">
+                     <div class="starRev">		     
+ 					 <span class="star">별1</span>
+ 					 <span class="star">별1</span>
+ 					 <span class="star">별1</span>
+ 					 <span class="star">별1</span>
+ 					 <span class="star">별1</span>
+			     	 </div>
+					 </c:when>
+                    </c:choose>
 
-                    <p class="text-muted text-uppercase mb-0 font-13"><c:out value="${list.reviewUid}" /></p>
-                    <p class="text-muted text-uppercase mb-0 font-13"><c:out value="${list.rMovieName}" /></p>
-                    <h4 class="mt-0 mb-3"><c:out value="${list.reviewGrade}" /></h4>
-                    <p class="text-muted font-13"><c:out value="${list.reviewContent}" /></p>
-                    <ul class="list-inline">
-                        <li class="list-inline-item">
-                            <h3 class="mb-0">124</h3>
-                            <p class="text-muted"><fmt:formatDate value="${list.reviewRegdate}" pattern="yyyy-MM-dd"/></p>
-                        </li>
-                        <li class="list-inline-item">
-                            <h3 class="mb-0">452</h3>
-                            <p class="text-muted"><c:out value="${list.reviewHeart}" /></p>
-                        </li>
-                    </ul>
+					<br>
+                    <p class="font-15"><c:out value="${list.reviewContent}" /></p>
+                    <p class="text-muted"><fmt:formatDate value="${list.reviewRegdate}" pattern="yyyy-MM-dd"/><c:out value=" 작성자 ${list.rMemId}" /></p>
+
                 </div>
             </div>
     
@@ -82,7 +149,7 @@
 					<div class="col-md-offset-3">
 						<ul class="pagination">
 							<c:if test="${pageMaker.prev}">
-								<li><a href="list${pageMaker.makeSearch(pageMaker.startPage - 1)}">이전</a></li>
+								<li><a href="reviewLists${pageMaker.makeSearch(pageMaker.startPage - 1)}">이전</a></li>
 							</c:if> 
 							
 							<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
@@ -91,7 +158,7 @@
 							</c:forEach>
 							
 							<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-								<li><a href="list${pageMaker.makeSearch(pageMaker.endPage + 1)}">다음</a></li>
+								<li><a href="reviewLists${pageMaker.makeSearch(pageMaker.endPage + 1)}">다음</a></li>
 							</c:if> 
 						</ul>
 					</div>
