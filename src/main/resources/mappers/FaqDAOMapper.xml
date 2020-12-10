@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lec.dao.FaqDAO">
+	<select id="select" resultType="com.lec.dto.BWriteDTO">
+		SELECT 
+			faq_uid "uid", faq_subject "subject", faq_answer "answer", faq_regdate "regdate" 
+		FROM faq 
+		ORDER BY faq_uid DESC
+	</select>
+	
+	<!-- view.do -->
+	<select id="selectByUid" resultType="com.lec.dto.BWriteDTO">
+		SELECT 
+			faq_uid "uid", faq_subject "subject", faq_answer "answer", faq_regdate "regdate" 
+		FROM faq 
+		WHERE faq_uid=#{uid}
+	</select>
+	
+	<!--  <insert id="insert" flushCache="true" parameterType="com.lec.beans.BWriteDTO">
+		INSERT INTO faq
+			(faq_uid "uid", faq_subject "subject", faq_answer "answer", faq_regdate "regdate")
+		VALUES
+			(faq_seq.nextval, #{subject}, #{answer}, SYSDATE)
+	</insert> -->
+
+	<insert id="insert" flushCache="true">
+			INSERT INTO faq
+				(faq_uid, faq_subject, faq_answer, faq_regdate)
+			VALUES
+				(faq_seq.nextval, #{subject}, #{answer}, SYSDATE)
+	</insert>
+
+	
+
+	<!-- updateOk.do -->
+	<!-- 
+	<update id="update" flushCache="true"
+		parameterType="com.lec.beans.BWriteDTO">
+		UPDATE test_write
+		SET wr_subject = #{subject}, wr_content = #{content}
+		WHERE wr_uid = #{uid}	
+	</update>
+	 -->
+	<update id="update" flushCache="true">
+		UPDATE faq
+		SET faq_subject = #{a.subject}, faq_answer = #{a.answer}
+		WHERE faq_uid = #{param1}	
+	</update>
+	
+	<!-- deleteOk.do -->
+	<delete id="deleteByUid" flushCache="true">
+		DELETE FROM faq
+		WHERE faq_uid = #{uid}
+	</delete>
+	
+	 
+	<select id="searchBySubject" resultType="com.lec.dto.BWriteDTO">
+		<![CDATA[
+		SELECT * FROM faq WHERE uid < 10
+		]]>
+	</select>
+
+	 
+	 
+</mapper>
+
+
+

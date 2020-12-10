@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -217,40 +218,7 @@
   </div>  
 <!-- middle contents -->
 
-<script>
-/*
-  $(document).ready(function () {
-    function ss() {
-      let w = window.innerWidth; // 화면(모니터 해상도)의 너비
-      let h = window.innerHeight; // 화면(모니터 해상도)의 높이
-      document.getElementsByName('ww').innerHTML = w;
-      document.getElementsByName('wh').innerHTML = h;
-      
-      
-      let t = setTimeout(function() {ss()}, 1);
-    }
-    ss();
-    
-    
-    $.ajax({
-  	  url: '/main',
-  	  type: 'POST',
-  	  dataType: "json",
-  	  data: {
-  		  ww : window.innerWidth,
-  		  wh : window.innerHeight
-  	  }
-  	  success: function(result) {
-  		  console.log(result.data);
-  		  
-  	  }
-  	});
-    
-    
-  });
-  */
-</script>
-  <script src="${pageContext.request.contextPath }/resources/js/register.js"></script>
-  <script src="${pageContext.request.contextPath }/resources/js/trailer.js"></script>
+<script src="${pageContext.request.contextPath }/resources/js/register.js"></script>
+<script src="${pageContext.request.contextPath }/resources/js/trailer.js"></script>
 </body>
 </html>

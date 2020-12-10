@@ -1,17 +1,42 @@
 'use strict';
-
+//login form
+const loginid = document.querySelector('#id');
+const loginForm = document.querySelector('#loginForm');
+const password = document.querySelector('#password');
+const loginButton = document.querySelector('.loginButton');
+//register form
 const regOk = document.getElementById('regOk');
 const id = document.getElementById('userid');
 let idFlag = false;
-
+//toaster alert
 toastr.options = {
     positionClass: 'toast-top-full-width',
     progressBar: true,
     timeOut: 1000,
 };
 
+// $( document ).ready()와 유사한 코드
+
 $(document).ready(()=>{
 
+    // 로그인 버튼 클릭시에 동작하는 함수
+	loginButton.addEventListener('click', () => {
+	    if (loginid.value.trim() === '') {
+	    	toastr.error('아이디를 입력해 주십시오', '경고', {
+	            timeOut: 3000,
+	        });
+	        loginid.focus();
+	    } else if (password.value.trim() === '') {
+	    	toastr.error('비밀번호를 입력해 주십시오', '경고', {
+	            timeOut: 3000,
+	        });
+	        password.focus();
+	    } else {
+	        login();
+	    }
+	});
+
+    //modal창 close시 text 초기화
     $('.modal').on('hidden.bs.modal', function (e) {
         console.log('modal close');
         $('form').each(function() {
@@ -19,6 +44,7 @@ $(document).ready(()=>{
         });
     });
 
+    //register form userid focusout시 ajax로 restcontroller로 data 전송
     $('#userid').focusout(function() {
 
         // $(this).addClass('hidden');
@@ -39,7 +65,7 @@ $(document).ready(()=>{
         });
     });
 
-    
+    //가입하기 버튼
     regOk.addEventListener('click', function() {
         console.log("가입 시도!");
         submit(); 
@@ -47,21 +73,34 @@ $(document).ready(()=>{
     });
     
 });
+//end $(document).ready
 
-function idCheck() {
-	let chkId = document.getElementById('userid').value;
-    $.ajax({
-        url: '/member/' + chkId,
-        type: 'get',
-        cache: false,
-        data: { id: document.getElementById('userid').value },
-        success: function(data) {
-            console.log(data);
-            idCheckMessage(data);
-            //document.getElementById('txt').innerHTML = data;
-        },
-    });
+
+function login() {
+	const loginForm = $('#loginForm').serialize(); // serialize 사용
+	console.log(loginForm);
+
+	$.ajax({
+		url: "login",
+		type: "POST",
+		cache: false,
+		data: loginForm,
+		
+		success: function(data){
+		    toastr.success('로그인 성공!', '로그인', {
+		        timeOut: 3000,
+		    });
+        
+            location.reload();
+		},
+		error: function (request, status, error){        
+		    console.log(error);
+		}
+	});
 }
+
+////////////
+
 
 function idCheckMessage(data) {
     
@@ -85,11 +124,11 @@ function idCheckMessage(data) {
         return idFlag = false;
         //registerButton.setAttribute('disabled', 'true');
     }
-}
+} //end idCheckMessage
 
 function submit() {
 
-    
+    //sendit -> 회원가입 유효성검사 return값 flase시 가입실패 true시 ajax로 restcontroller로 데이터 전송
     if(!sendit()){
         console.log('가입 실패!');
 
@@ -127,7 +166,7 @@ function submit() {
         });
     }
     
-} 
+} //end submit
 
 // 유효성 검사 return boolean
 function sendit(){
@@ -223,7 +262,7 @@ function sendit(){
         return false;
     }
 
-    return true; // 페이지 이동
+    return true; // 데이터 전송
     
 } // sendit() 종료
 

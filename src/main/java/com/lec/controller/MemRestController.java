@@ -2,6 +2,7 @@ package com.lec.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -11,18 +12,19 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 
 import com.lec.dto.memberDTO;
 import com.lec.service.memberService;
 
 //(String)request.getAttribute( "javax.servlet.forward.request_uri" )
 
+//@SessionAttributes({"id", "name"})	//id라는 키로 저장된 attribute는 session객체에 저장되는 애노테이션
 @RestController
 public class MemRestController {
 
+	private static final String LOGIN = "login";
+	
 	@Autowired
 	memberService memservice;
 	
@@ -51,25 +53,29 @@ public class MemRestController {
         return registerOk;
     }
     
-    @GetMapping("login/${userid}")
-    public String login(Model model, @PathVariable("userid") String id, HttpSession session) {
-		String loginId = memservice.login(id);
-		if(loginId != null) {
-			model.addAttribute("isSuccess", true);
-			model.addAttribute("loginId", loginId);
-			session.setAttribute("login", loginId);
-		}else {
-			model.addAttribute("isSuccess", false);
-		}
+    @PostMapping("login")
+    public void login(Model model, memberDTO dto, HttpServletRequest request) {
+    	memberDTO memberdto = memservice.login(dto);
 		
-		return "memberdto";
+    	HttpSession session = request.getSession();
+    	session.setAttribute(LOGIN, memberdto.getUserid());
+
+		
     }
     
+
+
+    
     // 로그아웃 하는 부분
-    @GetMapping("logout")
-    public void logout(Model model, HttpSession session) {
-        session.invalidate(); // 세션 초기화
+    @PostMapping("logout")
+    public void logout(Model model, HttpServletRequest request) {
+        HttpSession session = request.getSession();
         
+        if (session.getAttribute(LOGIN) != null) {
+        	session.removeAttribute(LOGIN);
+//        	session.invalidate(); // 세션 초기화
+        }
+
         model.addAttribute("logoutOk", "logoutOk");
     }
 }

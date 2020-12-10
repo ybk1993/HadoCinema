@@ -50,9 +50,9 @@ public class memberServiceImpl implements memberService{
 	
 	//로그인
 	@Override
-	public String login(String id){
-		
-		return dao.login(id);
+	public memberDTO login(memberDTO dto){
+		System.out.println("service -> dao 요청");
+		return dao.login(dto);
 	}
 //	
 //	//회원정보

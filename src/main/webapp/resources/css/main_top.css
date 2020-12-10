@@ -8,13 +8,13 @@
 } */
 
 .trailer {
-      height: 300px;
-      width: 200px;
+    height: 300px;
+    width: 200px;
     }
     
 .showlist, .card-footer {
-  background-color: black !important;
-  color: white !important;
+    background-color: black !important;
+    color: white !important;
 }
 
 .w-115 {
@@ -50,18 +50,36 @@ a:focus {
 
 a,
 a:hover {
-    color: rgb(255, 255, 255);
+	color: rgb(255, 255, 255);
 }
 
-.dropdown:hover .dropdown-menu {
+.dropdown:hover .sb1 {
     display: block;
-    left: -80vw;
+    left: -34.2vw;
+}
+.dropdown:hover .sb2 {
+    display: block;
+    left: -42.2vw;
+}
+.dropdown:hover .sb3 {
+    display: block;
+    left: -50.3vw;
+}
+.dropdown:hover .sb4 {
+    display: block;
+    left: -58.4vw;
 }
 
 #login {
     color: rgb(170, 170, 170);
     text-decoration: none;
     font-size: 11px;
+}
+
+#logID {
+    color: rgb(170, 170, 170);
+    text-decoration: none;
+    font-size: 11px;	
 }
 
 #divlogin {
@@ -108,16 +126,30 @@ ul {
     text-align: center;
 }
 
-.sub li:nth-child(1) {
-    margin-left: 78vw;
+.sb1 li:nth-child(1) {
+    margin-left: 41vw;
 }
+.sb2 li:nth-child(1) {
+    margin-left: 46vw;
+}
+.sb3 li:nth-child(1) {
+    margin-left: 37vw;
+}
+.sb4 li:nth-child(1) {
+    margin-left: 45vw;
+}
+/*
+44 < 2개
+47 < 1개
+37 < 4개
+39 < 3개
+*/
 
 .sub {
     background-color: #000000f5;
     border: none;
-    width: 200vw !important;
+    width: 98vw !important;
     z-index: 3;
-    /* opacity: 0.9; */
 }
 
 .submenu {

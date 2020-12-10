@@ -15,7 +15,7 @@ public interface memberDAO {
 		public boolean register(memberDTO dto);
 		
 		//로그인
-		public String login(String id);
+		public memberDTO login(memberDTO dto);
 //		
 //		//회원정보
 //		public List<memberDTO> getMemInfo(memberDTO dto);

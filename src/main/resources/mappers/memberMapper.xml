@@ -52,11 +52,11 @@ THEATERS, SCREENS, SEATS, TICKET, MOVIE, BOOKING
 	</insert>
 	
 	<!-- 로그인 -->
-	<select id="login" parameterType="com.lec.dto.memberDTO" resultType="com.lec.dto.memberDTO">
+	<select id="login" resultType="com.lec.dto.memberDTO">
 		SELECT userid, name, email, phone, 
 				zipcode, address1, address2, signupdate, 
 	  			status, booking, cancle, point
-	  			FROM MEMBERS WHERE userid = "apple123" and userpw = "1111"
+	  			FROM MEMBERS WHERE userid = #{userid} AND userpw = #{userpw}
 <!-- 
 		FROM MEMBERS WHERE userid = #{userid} and userpw = #{userpw}
  -->

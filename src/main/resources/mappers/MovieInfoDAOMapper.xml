@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.lec.dao.MovieInfoDAO">
+
+	<select id="select" resultType="com.lec.dto.MWriteDTO">
+		SELECT 
+			movie_uid "uid", movie_name "name", movie_director "director", 
+			movie_date "date", move_time "time", movie_actor "actor", 
+			movie_info "info", movie_img_address "img", movie_screens "screens",
+			movie_showdate "showdate", movie_showtime "showtime"
+		FROM movie 
+		ORDER BY movie_uid ASC
+	</select>
+
+	<select id="selectByUid" resultType="com.lec.dto.MWriteDTO">
+		SELECT 
+			movie_uid "uid", movie_name "name", movie_director "director", 
+			movie_date "date", move_time "time", movie_actor "actor", 
+			movie_info "info", movie_img_address "img", movie_screens "screens",
+			movie_showdate "showdate", movie_showtime "showtime" 
+		FROM movie 
+		WHERE movie_uid=#{uid}
+	</select>
+	
+	<insert id="insert" flushCache="true">
+			INSERT INTO movie
+				(movie_uid, movie_name, movie_director, 
+				 movie_date, move_time, movie_actor, 
+				 movie_info, movie_img_address, movie_screens, 
+				 movie_showdate, movie_showtime)
+			VALUES
+				(movie_seq.nextval, #{name}, #{director}, 
+				 #{date}, #{time}, #{actor}, 
+				 #{info}, #{img}, 1, 
+				 '상영날짜', '상영시간')
+	</insert>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+

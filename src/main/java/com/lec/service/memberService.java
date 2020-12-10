@@ -2,7 +2,6 @@ package com.lec.service;
 
 import java.util.List;
 
-import com.lec.dto.CsDTO;
 import com.lec.dto.memberDTO;
 
 public interface memberService {
@@ -16,7 +15,7 @@ public interface memberService {
 	public boolean register(memberDTO dto);
 	
 	//로그인
-	public String login(String id);
+	public memberDTO login(memberDTO dto);
 //	
 //	//회원정보
 //	public List<memberDTO> getMemInfo(memberDTO dto);

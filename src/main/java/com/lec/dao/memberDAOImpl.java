@@ -51,10 +51,11 @@ public class memberDAOImpl implements memberDAO{
 	
 	//로그인
 	@Override
-	public String login(String id){
-		String loginId = sqlSession.selectOne("login", id);
+	public memberDTO login(memberDTO dto){
+		System.out.println("dao -> mapper 데이터 요청");
+		memberDTO loginInfo = sqlSession.selectOne("login", dto);
 		
-		return loginId;
+		return loginInfo;
 	}
 //	
 //	//회원정보

@@ -14,15 +14,34 @@ a:focus {
 a, a:hover{
     color: black;
 }
-.dropdown:hover .dropdown-menu {
+
+.dropdown:hover .sb1 {
     display: block;
-    left: -80vw;
+    left: -34.2vw;
+}
+.dropdown:hover .sb2 {
+    display: block;
+    left: -42.2vw;
+}
+.dropdown:hover .sb3 {
+    display: block;
+    left: -50.3vw;
+}
+.dropdown:hover .sb4 {
+    display: block;
+    left: -58.4vw;
 }
 
 #login {
     color: rgb(170, 170, 170);
     text-decoration: none;
-    font-size: 10px;
+    font-size: 11px;
+}
+
+#logID {
+    color: rgb(170, 170, 170);
+    text-decoration: none;
+    font-size: 11px;	
 }
 
 #postlabel {
@@ -67,6 +86,24 @@ ul{
     border: none;
     width: 200vw !important;
     z-index: 3;
+}
+
+.sub li {
+    display: inline-block;
+    text-align: center;
+}
+
+.sb1 li:nth-child(1) {
+    margin-left: 41vw;
+}
+.sb2 li:nth-child(1) {
+    margin-left: 46vw;
+}
+.sb3 li:nth-child(1) {
+    margin-left: 37vw;
+}
+.sb4 li:nth-child(1) {
+    margin-left: 45vw;
 }
 
 .submenu {

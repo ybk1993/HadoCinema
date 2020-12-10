@@ -23,6 +23,7 @@ DROP SEQUENCE TICKET_SEQ;
 DROP SEQUENCE SCREENS_SEQ;
 DROP SEQUENCE THEATERS_SEQ;
 DROP SEQUENCE BOOKING_SEQ;
+DROP SEQUENCE movie_seq;
 
 -- THEATERS Table Create SQL
 CREATE TABLE THEATERS
@@ -179,6 +180,10 @@ CREATE TABLE BOOKING
     CONSTRAINT BOOKING_PK PRIMARY KEY (booing_uid)
 );
 
+CREATE SEQUENCE movie_seq
+START WITH 1
+INCREMENT BY 1
+NOCACHE;
 
 -- 회원관련 시퀀스
 CREATE SEQUENCE MEMBERS_SEQ
@@ -360,8 +365,17 @@ SELECT userid FROM MEMBERS WHERE userid = 'apple123' and userpw = '1111'
 --WHERE B.B_MEM_ID = 'lemon123';
 
    
+INSERT INTO movie
+				(movie_uid, movie_name, movie_director, 
+				 movie_date, move_time, movie_actor, 
+				 movie_info, movie_img_address, movie_screens, 
+				 movie_showdate, movie_showtime)
+			VALUES
+				(movie_seq.nextval, '영화제목', '감독이름', '개봉일', '총상영시간', '출연배우', '줄거리', '이미지주소', 1, 
+				 '상영날짜', '상영시간');
+
 INSERT INTO MOVIE
-  	VALUES(101, '영화제목', '감독이름', '개봉일', '총상영시간', '출연배우', '줄거리', '이미지주소', 1, '상영날짜', '상영시간');
+  	VALUES((movie_seq.nextval, '영화제목', '감독이름', '개봉일', '총상영시간', '출연배우', '줄거리', '이미지주소', 1, '상영날짜', '상영시간');
 --			영화																				극장
 INSERT INTO THEATERS
 	VALUES(THEATERS_SEQ.NEXTVAL, '지역', '극장이름', '극장주소', 8, 640);

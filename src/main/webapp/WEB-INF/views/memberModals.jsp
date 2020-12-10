@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!-- Modal: Login / Register Form -->
 <div class="modal fade" id="modalLRForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -38,20 +39,20 @@ aria-hidden="true">
 
             <!--Body-->
             <div class="modal-body mb-1">
-            <form action="" method="post" name="loginfrm" id="loginfrm">
+            <form action="" method="post" name="loginForm" id="loginForm">
               <div class="md-form form-sm mb-5">
                 <i class="fas fa-user prefix"></i>
-                <input type="text" id="loginid" class="form-control form-control-sm validate">
+                <input type="text" id="id" name="userid" class="form-control form-control-sm validate">
                 <label>아이디</label>
               </div>
 
               <div class="md-form form-sm mb-4">
                 <i class="fas fa-lock prefix"></i>
-                <input type="password" id="loginpw" class="form-control form-control-sm validate">
+                <input type="password" id="password" name="userpw" class="form-control form-control-sm validate">
                 <label>비밀번호</label>
               </div>
               <div class="text-center mt-2">
-                <button class="btn btn-info">로그인 <i class="fas fa-sign-in ml-1"></i></button>
+                <button type="button" class="btn btn-info loginButton">로그인<i class="fas fa-sign-in ml-1"></i></button>
               </div>
             </form>
             </div>

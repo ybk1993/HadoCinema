@@ -41,13 +41,13 @@
 			</p>
 			<div class="form-wrapper form-wrapper-id">
 				<div class="id-wrapper">
-					<input id="id" name="id" type="text" placeholder="아이디"
+					<input id="id" name="userid" type="text" placeholder="아이디"
 						class="form-control"> <i class="zmdi zmdi-accounts"></i>
 				</div>
 			</div>
 
 			<div class="form-wrapper">
-				<input type="password" name="password" placeholder="비밀번호"
+				<input type="password" name="userpw" placeholder="비밀번호"
 					id="password" class="form-control"> <i
 					class="zmdi zmdi-lock"></i>
 			</div>
@@ -57,12 +57,14 @@
 			</button>
 			
 		</form>
-
+		
 	</div>
 </div>
-
+<hr>
+<p id="b" >${login }님 환영합니다.</p>
 
 <script type="text/javascript">
+'use strict';
 
 const id = document.querySelector('#id');
 const loginForm = document.querySelector('#loginForm');
@@ -72,7 +74,7 @@ const poster = document.querySelector('#poster');
 const moveRegister = document.querySelector('.moveRegister');
 const moveMain = document.querySelector('.moveMain');
 // $( document ).ready()와 유사한 코드
-document.addEventListener('DOMContentLoaded', () => {
+$(document).ready(()=>{
 	// 로그인 버튼 클릭시에 동작하는 함수
 	
 	loginButton.addEventListener('click', () => {
@@ -87,8 +89,8 @@ document.addEventListener('DOMContentLoaded', () => {
 	        });
 	        password.focus();
 	    } else {
-	        console.log('로그인버튼 클릭');
 	        login();
+	        location.href = location.href;
 	    }
 	});
 
@@ -98,19 +100,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 function login() {
-	
-    $.ajax({
-        url: '/login/' + id,
-        type: 'get',
-        cache: false,
-        data: { 'userid' : id },
-        success: function(data) {
-            console.log(data);
-            idCheckMessage(data);
-            document.getElementById('txt').innerHTML = data;
-        },
-    });
+	const loginfrm = $('#loginForm').serialize(); // serialize 사용
+	console.log(loginfrm);
+
+	$.ajax({
+		url: "login",
+		type: "POST",
+		cache: false,
+		data: loginfrm,
+		
+		success: function(data){
+		    toastr.success('로그인 성공!', '로그인', {
+		        timeOut: 3000,
+		    });
+		},
+		error: function (request, status, error){        
+		    console.log(error);
+		}
+	});
 }
+
+
 
 //////////////////////////////////////////////////////////////////////
 /*
