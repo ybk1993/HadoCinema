@@ -184,7 +184,7 @@
         </div> <!-- layoutSidenav_content -->
     </div> <!-- admin_nav.jsp에서 닫지 않은 div 태그닫음 <div id="layoutSidenav"> -->
     
-    <script src="${pageContext.request.contextPath }/resources/js/scripts.js"></script>
+    <script src="${pageContext.request.contextPath }/resources/JS/scripts.js"></script>
     <script src="${pageContext.request.contextPath }/resources/assets/demo/chart-area-demo.js"></script>
     <script src="${pageContext.request.contextPath }/resources/assets/demo/chart-bar-demo.js"></script>
     <script src="${pageContext.request.contextPath }/resources/assets/demo/chart-pie-demo.js"></script>

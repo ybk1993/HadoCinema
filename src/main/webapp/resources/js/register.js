@@ -7,7 +7,11 @@ const loginButton = document.querySelector('.loginButton');
 //register form
 const regOk = document.getElementById('regOk');
 const id = document.getElementById('userid');
+const logout = document.querySelector('.logout');
 let idFlag = false;
+//mypage
+// const loginForm = document.querySelector('#mypageMForm');
+
 //toaster alert
 toastr.options = {
     positionClass: 'toast-top-full-width',
@@ -23,14 +27,14 @@ $(document).ready(()=>{
 	loginButton.addEventListener('click', () => {
 	    if (loginid.value.trim() === '') {
 	    	toastr.error('아이디를 입력해 주십시오', '경고', {
-	            timeOut: 3000,
+	            timeOut: 3000
 	        });
-	        loginid.focus();
+	        loginid.focusin();
 	    } else if (password.value.trim() === '') {
 	    	toastr.error('비밀번호를 입력해 주십시오', '경고', {
-	            timeOut: 3000,
+	            timeOut: 3000
 	        });
-	        password.focus();
+	        password.focusin();
 	    } else {
 	        login();
 	    }
@@ -41,6 +45,17 @@ $(document).ready(()=>{
         console.log('modal close');
         $('form').each(function() {
             this.reset();
+            $('#id').focusin().focusout();
+            $('#password').focusin().focusout();
+
+            $('#userid').focusin().focusout();
+            $('#userpw').focusin().focusout();
+            $('#name').focusin().focusout();
+            $('#phone').focusin().focusout();
+            $('#useremail').focusin().focusout();
+            $('#zipcode').focusin().focusout();
+            $('#address1').focusin().focusout();
+            $('#address2').focusin().focusout();
         });
     });
 
@@ -59,7 +74,7 @@ $(document).ready(()=>{
                 console.log(data);
                 idCheckMessage(data);
                 if(data == 'true'){
-                    $('#userid').val('').blur();
+                    $('#userid').val('');
                 }
             },
         });
@@ -69,12 +84,11 @@ $(document).ready(()=>{
     regOk.addEventListener('click', function() {
         console.log("가입 시도!");
         submit(); 
-        
     });
+
     
 });
 //end $(document).ready
-
 
 function login() {
 	const loginForm = $('#loginForm').serialize(); // serialize 사용
@@ -87,11 +101,10 @@ function login() {
 		data: loginForm,
 		
 		success: function(data){
-		    toastr.success('로그인 성공!', '로그인', {
-		        timeOut: 3000,
-		    });
-        
             location.reload();
+		    toastr.success('로그인 성공!', '로그인', {
+		        timeOut: 1000,
+		    });
 		},
 		error: function (request, status, error){        
 		    console.log(error);
@@ -99,11 +112,7 @@ function login() {
 	});
 }
 
-////////////
-
-
 function idCheckMessage(data) {
-    
     if (id.value.length < 3) {
         toastr.error('최소 4글자 이상의 아이디를 입력해 주세요', '아이디 확인', {
             timeOut: 3000,
@@ -127,7 +136,6 @@ function idCheckMessage(data) {
 } //end idCheckMessage
 
 function submit() {
-
     //sendit -> 회원가입 유효성검사 return값 flase시 가입실패 true시 ajax로 restcontroller로 데이터 전송
     if(!sendit()){
         console.log('가입 실패!');
@@ -148,31 +156,27 @@ function submit() {
                 toastr.success('회원가입 성공!', '회원가입', {
                     timeOut: 3000,
                 });
-                $('#userid').val('').blur();
-                $('#userpw').val('').blur();
-                $('#name').val('').blur();
-                $('#phone').val('').blur();
-                $('#useremail').val('').blur();
-                $('#zipcode').val('').blur();
-                $('#address1').val('').blur();
-                $('#address2').val('').blur();
-                
-                
-
+                $('#userid').focusin().val('').focusout();
+                $('#userpw').focusin().val('').focusout();
+                $('#name').focusin().val('').focusout();
+                $('#phone').focusin().val('').focusout();
+                $('#useremail').focusin().val('').focusout();
+                $('#zipcode').focusin().val('').focusout();
+                $('#address1').focusin().val('').focusout();
+                $('#address2').focusin().val('').focusout();
             },
             error: function (request, status, error){        
                 console.log(error);
             }
         });
     }
-    
 } //end submit
 
 // 유효성 검사 return boolean
 function sendit(){
-    
+    console.log("sendit() 클릭");
     // document.querySelector()
-    // 객체 저장
+    // 회원가입
     const userid = document.getElementById('userid');
     const userpw = document.getElementById('userpw');
     const name = document.getElementById('name');
@@ -181,7 +185,6 @@ function sendit(){
     const zipcode = document.getElementById('zipcode');
     const address1 = document.getElementById('address1');
     const address2 = document.getElementById('address2');
-    
     
     // 정규식
     const expPwText = /^.*(?=^.{4,20}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&*()+=]).*$/;
@@ -193,21 +196,21 @@ function sendit(){
         toastr.error('아이디를 입력하세요.', '아이디', {
             timeOut: 3000,
         });
-        userid.focus();
+        userid.focusin();
         return false;
     }
     if(userid.value.length < 4 || userid.value.length > 20){
         toastr.error('아이디를 4자이상 20자 이하로 입력하세요.', '아이디', {
             timeOut: 3000,
         });
-        userid.focus();
+        userid.focusin();
         return false;
     }
     if(userpw.value == ''){
         toastr.error('비밀번호를 입력하세요.', '비밀번호 입력', {
             timeOut: 3000,
         });
-        userpw.focus();
+        userpw.focusin();
         return false;
     }
     
@@ -215,28 +218,28 @@ function sendit(){
         toastr.error('비밀번호 형식을 확인하세요.', '비밀번호 형식', {
             timeOut: 3000,
         });
-        userpw.focus();
+        userpw.focusin();
         return false;
     }
     if(expNameText.test(name.value) == false){
         toastr.error('이름 형식을 확인하세요.', '이름 형식', {
             timeOut: 3000,
         });
-        name.focus();
+        name.focusin();
         return false;
     }
     if(expHpText.test(phone.value) == false){
         toastr.error('휴대폰 번호 형식을 확인하세요.', '휴대폰 형식', {
             timeOut: 3000,
         });
-        phone.focus();
+        phone.focusin();
         return false;
     }
     if(expEmailText.test(email.value) == false){
         toastr.error('이메일 형식을 확인하세요.', '이메일 형식', {
             timeOut: 3000,
         });
-        email.focus();
+        email.focusin();
         return false;
     }
     
@@ -244,21 +247,21 @@ function sendit(){
         toastr.error('우편번호를 입력하세요.', '주소 입력', {
             timeOut: 3000,
         });
-        userpw.focus();
+        zipcode.focusin();
         return false;
     }
     if(address1.value == ''){
         toastr.error('주소를 입력하세요.', '주소 입력', {
             timeOut: 3000,
         });
-        userpw.focus();
+        address1.focusin();
         return false;
     }
     if(address2.value == ''){
         toastr.error('상세주소를 입력하세요.', '주소 입력', {
             timeOut: 3000,
         });
-        userpw.focus();
+        address2.focusin();
         return false;
     }
 
@@ -290,19 +293,14 @@ function daumPostcode() {
             // 우편번호와 주소 정보를 해당 필드에 넣는다.
             //document.getElementById('zipcode').focus();
             //document.getElementById('zipcode').value = data.zonecode;
-            $('#zipcode').val(data.zonecode);
             // document.getElementById("address1").focus();
             // document.getElementById("address1").value = addr;
-            $('#address1').val(addr).blur();
             
+            $('#zipcode').focusin().val(data.zonecode).focusout();
+            $('#address1').focusin().val(addr).focusout();
+            $('#address2').focusin();
+
             
-            $('#zipcode').focus();
-            $('#zipcode').blur();
-            $('#address1').focus();
-            $('#address1').blur();
-            // 커서를 상세주소 필드로 이동한다.
-            // document.getElementById("address2").focus();
-            $('#address2').focus();
 
         }
     }).open();

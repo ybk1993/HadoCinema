@@ -15,7 +15,10 @@
 <form>
 
 </form>
+
+ <jsp:include page="../mypageModals.jsp"></jsp:include>
  <jsp:include page="../memberModals.jsp"></jsp:include>
+
   <!--Carousel Wrapper-->
   <div id="carousel-example-1z" class="carousel slide carousel-fade" data-ride="carousel">
     <div class="gradienttop w-100 h-25">

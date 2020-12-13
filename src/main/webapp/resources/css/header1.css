@@ -29,7 +29,7 @@ a, a:hover{
 }
 .dropdown:hover .sb4 {
     display: block;
-    left: -58.4vw;
+    left: -50.1vw;
 }
 
 #login {
@@ -77,14 +77,10 @@ ul{
     text-align:center;
 }
 
-.sub li:nth-child(1){
-    margin-left: 78vw;
-}
-
-.sub{
+.sub {
     background-color: #F8F8F8;
     border: none;
-    width: 200vw !important;
+    width: 98vw !important;
     z-index: 3;
 }
 

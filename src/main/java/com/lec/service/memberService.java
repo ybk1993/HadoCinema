@@ -16,6 +16,9 @@ public interface memberService {
 	
 	//로그인
 	public memberDTO login(memberDTO dto);
+
+	//회원정보수정
+	public void updateMemInfo(memberDTO dto);
 //	
 //	//회원정보
 //	public List<memberDTO> getMemInfo(memberDTO dto);
@@ -29,8 +32,6 @@ public interface memberService {
 //	//메일 중복 체크
 //	public String chkMemEmail(String email);
 //	
-//	//회원정보수정
-//	public void updateMemInfo(memberDTO dto);
 //	
 //	//탈퇴하기
 //	public void withdrawMem(memberDTO dto);

@@ -1,6 +1,10 @@
 package com.lec.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -13,6 +17,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.lec.dto.memberDTO;
 import com.lec.service.memberService;
@@ -56,26 +61,45 @@ public class MemRestController {
     @PostMapping("login")
     public void login(Model model, memberDTO dto, HttpServletRequest request) {
     	memberDTO memberdto = memservice.login(dto);
-		
     	HttpSession session = request.getSession();
-    	session.setAttribute(LOGIN, memberdto.getUserid());
+    	
+        String strDate = null;
+        SimpleDateFormat tranSimpleFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.ENGLISH);
+        strDate = tranSimpleFormat.format(memberdto.getSignupdate());
+        
 
+    	session.setAttribute(LOGIN, memberdto.getUserid());
+    	session.setAttribute("name", memberdto.getName());
+    	session.setAttribute("email", memberdto.getEmail());
+    	session.setAttribute("phone", memberdto.getPhone());
+    	session.setAttribute("zipcode", memberdto.getZipcode());
+    	session.setAttribute("add1", memberdto.getAddress1());
+    	session.setAttribute("add2", memberdto.getAddress2());
+    	session.setAttribute("signupdate", strDate);
+    	session.setAttribute("status", memberdto.getStatus());
 		
     }
     
 
+    @PostMapping("/update")
+    public void update(memberDTO dto, Model model) {
+    	System.out.println("update");
+    	memservice.register(dto);
+    	
+    }
 
     
     // 로그아웃 하는 부분
-    @PostMapping("logout")
-    public void logout(Model model, HttpServletRequest request) {
+    @GetMapping("logout")
+    public ModelAndView logout(Model model, HttpServletRequest request) {
         HttpSession session = request.getSession();
         
         if (session.getAttribute(LOGIN) != null) {
         	session.removeAttribute(LOGIN);
 //        	session.invalidate(); // 세션 초기화
         }
-
-        model.addAttribute("logoutOk", "logoutOk");
+        ModelAndView mav = new ModelAndView("main/main"); //main/main.jsp를 뿌려준다.
+        mav.setViewName("redirect:/main");	// url 경로 /main으로 변경 안하면 /logout
+        return mav;
     }
 }

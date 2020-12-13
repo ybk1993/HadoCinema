@@ -6,7 +6,7 @@
         <div class="d-flex align-items-center justify-content-between small">
             <div class="text-muted">Copyright &copy; HaedoChinema 2020</div>
             <div class="text-muted">
-                대표 유건우
+                대표 김해도
             </div>
         </div>
     </div>

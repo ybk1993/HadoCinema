@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 {"resources":{"ERD/hdcinema.sql":{"default-schema":"HC04A","sql-editor-data-source-id":"oracle_thin-1764b2cbcae-44450ab2b33ea395","default-datasource":"oracle_thin-1764b2cbcae-44450ab2b33ea395"}}}
+=======
+{"resources":{"ERD/hdcinema.sql":{"default-schema":"HC04A","sql-editor-data-source-id":"oracle_thin-1761ddefc73-64b6773acb0f0f2d","default-datasource":"oracle_thin-1761ddefc73-64b6773acb0f0f2d"},"src/main/webapp/WEB-INF/sql/createtables.sql":{"default-schema":"HC04A","sql-editor-data-source-id":"oracle_thin-176437b7baa-649239314a7ccf8","default-datasource":"oracle_thin-176437b7baa-649239314a7ccf8"}}}
+>>>>>>> stash

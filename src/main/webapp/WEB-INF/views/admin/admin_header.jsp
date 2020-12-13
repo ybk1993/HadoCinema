@@ -21,10 +21,8 @@
       <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown"
         aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
       <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-        <a class="dropdown-item" href="#">Settings</a>
-        <a class="dropdown-item" href="#">Activity Log</a>
         <div class="dropdown-divider"></div>
-        <a class="dropdown-item" href="${pageContext.request.contextPath }/admin/login">관리자 로그아웃</a>
+        <a class="dropdown-item" href="${pageContext.request.contextPath }/main">사용자 메인으로</a>
       </div>
     </li>
   </ul>
@@ -39,44 +37,42 @@
             <span class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></span>
             대시보드
           </a>
-          <div class="sb-sidenav-menu-heading">관리</div>
-          
+          <!-- 사이드 메뉴 구간 제목 -->
+          <div class="sb-sidenav-menu-heading">관리메뉴</div>
+          <!-- 관리메뉴 제목 -->
           <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
             aria-expanded="false" aria-controls="collapsePages">
             <span class="sb-nav-link-icon"><i class="fas fa-book-open"></i></span>
-            Pages
-            <span class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></span>
-          </a>
-          <div class="collapse" id="collapsePages" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-            <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-              <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapseAuth"
-                aria-expanded="false" aria-controls="pagesCollapseAuth">
-                Authentication
-                <span class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></span>
-              </a>
-              <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne"
-                data-parent="#sidenavAccordionPages">
-                <nav class="sb-sidenav-menu-nested nav">
-                  <a class="nav-link" href="${pageContext.request.contextPath }/admin/login">관리자 로그인</a>
-                  <a class="nav-link" href="${pageContext.request.contextPath }/admin/register">관리자 등록</a>
-                  <a class="nav-link" href="${pageContext.request.contextPath }/admin/forgotpw">비밀번호 찾기</a>
-                </nav>
-              </div>
-              <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapseError"
-                aria-expanded="false" aria-controls="pagesCollapseError">
-                Error
-                <span class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></span>
-              </a>
-              <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne"
-                data-parent="#sidenavAccordionPages">
-                <nav class="sb-sidenav-menu-nested nav">
-                  <a class="nav-link" href="${pageContext.request.contextPath }/admin/err401">401 Page</a>
-                  <a class="nav-link" href="${pageContext.request.contextPath }/admin/err404">404 Page</a>
-                  <a class="nav-link" href="${pageContext.request.contextPath }/admin/err500">500 Page</a>
-                </nav>
-              </div>
-            </nav>
-          </div>
+            영화
+            <span class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></span></a>
+            <!-- 토글 상세 메뉴 -->
+            <div class="collapse" id="collapsePages" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+               <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+                 <a class="nav-link" href="${pageContext.request.contextPath }/movieInfo/movieSave">영화 등록</a>
+               </nav>
+            </div>
+          <!-- end 토글 상세메뉴 -->
+            <!-- 토글 상세 메뉴 -->
+            <div class="collapse" id="collapsePages" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+               <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+                 <a class="nav-link" href="${pageContext.request.contextPath }/movieInfo/movieChart">영화 차트</a>
+               </nav>
+            </div>
+          <!-- end 토글 상세메뉴 -->
+          
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages2"
+            aria-expanded="false" aria-controls="collapsePages">
+            <span class="sb-nav-link-icon"><i class="fas fa-book-open"></i></span>
+            고객센터
+            <span class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></span></a>
+            <!-- 토글 상세 메뉴 -->
+            <div class="collapse" id="collapsePages2" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+               <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+                 <a class="nav-link" href="${pageContext.request.contextPath }/faq/list">FAQ 관리</a>
+               </nav>
+            </div>
+          <!-- end 토글 상세메뉴 -->
+          
           <div class="sb-sidenav-menu-heading">Addons</div>
           <a class="nav-link" href="${pageContext.request.contextPath }/admin/charts">
             <span class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></span>
@@ -90,7 +86,7 @@
       </div>
       <div class="sb-sidenav-footer">
         <div class="small">Logged in as:</div>
-        Start Bootstrap
+        HAEDO CINEMA
       </div>
     </nav>
   </div>

@@ -24,9 +24,16 @@
        		 <a id="login" data-toggle="modal" data-target="#modalLRForm">로그인/회원가입</a>
 	       </c:when>
 	       <c:otherwise>
-       		 <span id="logID" style="margin-right: 1vw;">${login }님 환영합니다.</span>
-       		 <a style="margin-right: 1vw;" id="login" data-toggle="modal" data-target="#modalLRForm">로그아웃</a>
-       		 <a id="login" data-toggle="modal" data-target="#modalLRForm">마이페이지</a>
+	       		 <c:choose>
+	      			 <c:when test="${login eq 'admin'}">
+       		 			<span id="logID" style="margin-right: 1vw;">관리자모드</span>
+	      			 </c:when>
+	      		 	<c:otherwise>
+	      		 		<span id="logID" style="margin-right: 1vw;">${login }님 환영합니다.</span>
+      		 		</c:otherwise>
+      		 	</c:choose>
+       		 <a href="logout" class="logout" id="login" style="margin-right: 1vw;">로그아웃</a>
+       		<a id="login" data-toggle="modal" data-target="#mypageMForm">마이페이지</a>
 	       </c:otherwise>
        </c:choose>
       </div>
@@ -35,31 +42,30 @@
     <ul class="row">
       <li class="col-md-4 empty"></li>
       <li class="col-md-1 dropdown hdmenu menu">
-        <a href="">예매</a>
+        <a href="">리뷰</a>
         <ul class="justify-content-center dropdown-menu sub sb1">
-          <li><a class="grey-text submenu">예매하기</a></li>
-          <li><a class="grey-text submenu">상영시간표</a></li>
+          <li><a class="grey-text submenu">리뷰 크롤링</a></li>
+          <c:if test="${not empty login and login eq 'admin' }">
+          	<li><a class="grey-text submenu">리뷰 쓰기</a></li>
+          </c:if>
         </ul>
       </li>
       <li class="col-md-1 dropdown hdmenu menu">
-        <a href="">영화</a>
+        <a href="movieInfo/movieChart">영화</a>
         <ul class="justify-content-center dropdown-menu sub sb2">
-          <li><a class="grey-text submenu">목록</a></li>
-        </ul>
-      </li>
-      <li class="col-md-1 dropdown hdmenu menu">
-        <a href="">영화관</a>
-        <ul class="justify-content-center dropdown-menu sub sb3">
-          <li><a class="grey-text submenu">건대입구</a></li>
-          <li><a class="grey-text submenu">역삼</a></li>
-          <li><a class="grey-text submenu">제주도</a></li>
-          <li><a class="grey-text submenu">여의도</a></li>
+          <li><a href="movieInfo/movieChart" class="grey-text submenu">목록</a></li>
+          <c:if test="${not empty login and login eq 'admin' }">
+	          <li><a href="movieInfo/movieSave" class="grey-text submenu">영화등록</a></li>
+          </c:if>
         </ul>
       </li>
       <li class="col-md-1 dropdown hdmenu menu">
         <a href="">고객센터</a>
         <ul class="justify-content-center dropdown-menu sub sb4">
-          <li><a class="grey-text submenu">FAQ문의</a></li>
+          <li><a href="faq/faq" class="grey-text submenu">FAQ문의</a></li>
+          <c:if test="${not empty login and login eq 'admin' }">
+	          <li><a href="faq/list" class="grey-text submenu">FAQ등록</a></li>          
+          </c:if>
         </ul>
       </li>
     </ul>

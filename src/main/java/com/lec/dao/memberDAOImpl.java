@@ -57,6 +57,12 @@ public class memberDAOImpl implements memberDAO{
 		
 		return loginInfo;
 	}
+	
+	//회원정보 수정
+	@Override
+    public void updateMemInfo(memberDTO dto) {
+        sqlSession.update("updateMemInfo", dto); 
+    }
 //	
 //	//회원정보
 //	@Override
@@ -99,11 +105,6 @@ public class memberDAOImpl implements memberDAO{
 //		return chkMemEmail;
 //	}
 //	
-//	//회원정보 수정
-//	@Override
-//    public void updateMemInfo(memberDTO dto) {
-//        sqlSession.update("updateMemInfo", dto); 
-//    }
 //	
 //	//탈퇴하기
 //	@Override

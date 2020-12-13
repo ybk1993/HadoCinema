@@ -54,6 +54,12 @@ public class memberServiceImpl implements memberService{
 		System.out.println("service -> dao 요청");
 		return dao.login(dto);
 	}
+	
+	//회원정보수정
+	@Override
+	public void updateMemInfo(memberDTO dto){
+		
+	}
 //	
 //	//회원정보
 //	@Override
@@ -83,11 +89,7 @@ public class memberServiceImpl implements memberService{
 //		return dao.chkMemEmail(email);
 //	}
 //	
-//	//회원정보수정
-//	@Override
-//	public void updateMemInfo(memberDTO dto){
-//		
-//	}
+
 //	
 //	//탈퇴하기
 //	@Override

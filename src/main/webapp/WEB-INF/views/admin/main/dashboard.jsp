@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <link href="${pageContext.request.contextPath }/resources/CSS/admin.css" rel="stylesheet" />
+    <link href="${pageContext.request.contextPath }/resources/css/admin.css" rel="stylesheet" />
     <title>해도시네마 - 관리자모드 </title>
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js"></script>
@@ -239,7 +239,7 @@
             <jsp:include page="../admin_footer.jsp"></jsp:include> <!-- nav 가져오기 -->
         </div> <!-- layoutSidenav_content -->
     </div> <!-- admin_nav.jsp에서 닫지 않은 div 태그닫음 <div id="layoutSidenav"> -->
-    <script src="${pageContext.request.contextPath }/resources/JS/scripts.js"></script>
+    <script src="${pageContext.request.contextPath }/resources/js/scripts.js"></script>
     <script src="${pageContext.request.contextPath }/resources/assets/demo/chart-area-demo.js"></script>
     <script src="${pageContext.request.contextPath }/resources/assets/demo/chart-bar-demo.js"></script>
     <script src="${pageContext.request.contextPath }/resources/assets/demo/datatables-demo.js"></script>

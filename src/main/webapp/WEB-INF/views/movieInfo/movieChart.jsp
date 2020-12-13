@@ -4,35 +4,27 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="ko">
-<%@include file="../cdn.jsp" %>
+<jsp:include page="../cdn.jsp"></jsp:include>
 <head>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width">
    
-    <title>메가박스 사이트 코딩하기 : 영화 차트 탭 메뉴</title>
+    <title>영화 목록</title>
 
     <!-- css -->	
 	<link href="${pageContext.request.contextPath }/resources/css/reset08.css" rel="stylesheet"/>
 	<link href="${pageContext.request.contextPath }/resources/css/style08.css" rel="stylesheet"/>
-	
-	<!--  
-	<link href="${pageContext.request.contextPath }/resources/css/swiper.css" rel="stylesheet"/>
-	-->
-    <!-- js -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
- 	
- 	<!--  
- 	<script src="${pageContext.request.contextPath }/resources/js/movieChart.js"></script>
-    -->
-    
+	<!-- CSS -->
+ 	<link href="${pageContext.request.contextPath }/resources/css/header1.css" rel="stylesheet">
     <!-- 웹 폰트 -->
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,500,700,900&subset=korean" rel="stylesheet">
     
     
 </head>
 <body>
-    <%@include file="../header.jsp" %>
+    <jsp:include page="../memberModals.jsp"></jsp:include>
+	<jsp:include page="../header.jsp"></jsp:include>
     <section id="movie">
         <h2 class="ir_so">최신 영화 정보</h2>
         <div class="container">
@@ -284,7 +276,7 @@
             movCont.eq(index).css("display","block");
         });
     </script>
-     
+     <script src="${pageContext.request.contextPath }/resources/js/register.js"></script>
 </body>
 
 </html>

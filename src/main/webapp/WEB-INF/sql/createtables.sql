@@ -13,6 +13,8 @@ DROP TABLE "FAQ" CASCADE CONSTRAINTS;
 DROP TABLE "CUSTOMERSERVICE" CASCADE CONSTRAINTS;
 DROP TABLE "BOOKING" CASCADE CONSTRAINTS;
 
+
+
 -- 시퀀스 삭제
 DROP SEQUENCE MEMBERS_SEQ;
 DROP SEQUENCE CS_SEQ;
@@ -44,12 +46,12 @@ CREATE TABLE MEMBERS
     userid         VARCHAR2(20)     NOT NULL UNIQUE, 
     userpw         VARCHAR2(20)     NOT NULL, 
     name           VARCHAR2(20)     NOT NULL, 
-    email          VARCHAR2(100)    NOT NULL, 
-    phone          VARCHAR2(20)     NOT NULL, 
-    zipcode        VARCHAR2(20)     NOT NULL, 
-    address1       VARCHAR2(100)    NOT NULL, 
-    address2       VARCHAR2(100)    NOT NULL, 
-    signupdate    DATE             NOT NULL, 
+    email          VARCHAR2(100)    NULL, 
+    phone          VARCHAR2(20)     NULL, 
+    zipcode        VARCHAR2(20)     NULL, 
+    address1       VARCHAR2(100)    NULL, 
+    address2       VARCHAR2(100)    NULL, 
+    signupdate    DATE              NULL, 
     status         CHAR(1)          NOT NULL, 
     booking        VARCHAR2(300)    NULL, 
     cancle         VARCHAR2(300)    NULL, 
@@ -278,6 +280,9 @@ ALTER TABLE BOOKING
     ADD CONSTRAINT FK_BOOKING_b_ticket_uid FOREIGN KEY (b_ticket_uid)
         REFERENCES TICKET (ticket_uid);
 
+-- 임시 관리자 계정
+INSERT INTO MEMBERS(mem_uid, userid, userpw, name, status)
+  	 VALUES(MEMBERS_SEQ.NEXTVAL, 'admin', 'admin', '관리자', '1');
 -- 데이터
 INSERT INTO MEMBERS(mem_uid, userid, userpw, name, email, phone, zipcode, 
 					address1, address2, signupdate, status, booking, cancle, point)
@@ -299,17 +304,23 @@ INSERT INTO MEMBERS(mem_uid, userid, userpw, name, email, phone, zipcode,
   	 VALUES(MEMBERS_SEQ.NEXTVAL, 'banana123', '5555', '바나나', 'ban@gmail.com', '010-1111-2222', 
   	 		'12123', '무왕로 1', '진격', SYSDATE, '0', 0);
   	 	
+INSERT INTO MEMBERS(mem_uid, userid, userpw, name, email, phone, zipcode, 
+					address1, address2, signupdate, status, point)
+  	 VALUES(MEMBERS_SEQ.NEXTVAL, 'melon', '0000', '김멜론', 'ban@gmail.com', '010-1111-2222', 
+  	 		'12123', '무왕로 1', '진격', SYSDATE, '0', 0);
+  	 	
   	 	
 -- 회원목록, 아이디중복, 로그인, 회원정보, 
---SELECT * FROM MEMBERS;
+SELECT * FROM MEMBERS;
 
 --아이디중복체크
---SELECT userid FROM MEMBERS WHERE userid = 'apple123';
+SELECT userid FROM MEMBERS WHERE userid = 'apple123';
 
 					
 --로그인
-SELECT userid FROM MEMBERS WHERE userid = 'apple123' and userpw = '1111'
+--SELECT userid FROM MEMBERS WHERE userid = 'apple123' and userpw = '1111'
 
+--SELECT TO_CHAR(SYSDATE,'DL') FROM DUAL; --2019년 11월 30일 토요일
 --회원정보
 --SELECT userid, userpw, name, email, phone, zipcode, 
 --					address1, address2, signupdate, status, booking, cancle, point
@@ -328,9 +339,9 @@ SELECT userid FROM MEMBERS WHERE userid = 'apple123' and userpw = '1111'
 --SELECT email FROM MEMBERS WHERE email= 'a@gmail.com';
 
 --회원정보수정
---UPDATE MEMBERS 
---	SET userpw = '1234', email = 'a1@gmail.com', phone = '010-1111-4321', 
---	zipcode = '00135', address1 = '상현중앙로', address2 = '2' WHERE userid = 'apple123';
+UPDATE MEMBERS 
+	SET userpw = '1111', email = 'ab@gmail.com', phone = '010-2222-4321', 
+	zipcode = '00135', address1 = '상현중앙로', address2 = '221' WHERE userid = 'apple123';
 
 --탈퇴하기 status = 0으로
 --UPDATE MEMBERS SET status = '0' WHERE userid = 'apple123';
@@ -365,32 +376,32 @@ SELECT userid FROM MEMBERS WHERE userid = 'apple123' and userpw = '1111'
 --WHERE B.B_MEM_ID = 'lemon123';
 
    
-INSERT INTO movie
-				(movie_uid, movie_name, movie_director, 
-				 movie_date, move_time, movie_actor, 
-				 movie_info, movie_img_address, movie_screens, 
-				 movie_showdate, movie_showtime)
-			VALUES
-				(movie_seq.nextval, '영화제목', '감독이름', '개봉일', '총상영시간', '출연배우', '줄거리', '이미지주소', 1, 
-				 '상영날짜', '상영시간');
+--INSERT INTO movie
+--				(movie_uid, movie_name, movie_director, 
+--				 movie_date, move_time, movie_actor, 
+--				 movie_info, movie_img_address, movie_screens, 
+--				 movie_showdate, movie_showtime)
+--			VALUES
+--				(movie_seq.nextval, '영화제목', '감독이름', '개봉일', '총상영시간', '출연배우', '줄거리', '이미지주소', 1, 
+--				 '상영날짜', '상영시간');
 
-INSERT INTO MOVIE
-  	VALUES((movie_seq.nextval, '영화제목', '감독이름', '개봉일', '총상영시간', '출연배우', '줄거리', '이미지주소', 1, '상영날짜', '상영시간');
+--INSERT INTO MOVIE
+--  	VALUES((movie_seq.nextval, '영화제목', '감독이름', '개봉일', '총상영시간', '출연배우', '줄거리', '이미지주소', 1, '상영날짜', '상영시간');
 --			영화																				극장
-INSERT INTO THEATERS
-	VALUES(THEATERS_SEQ.NEXTVAL, '지역', '극장이름', '극장주소', 8, 640);
+--INSERT INTO THEATERS
+--	VALUES(THEATERS_SEQ.NEXTVAL, '지역', '극장이름', '극장주소', 8, 640);
 --			극장											상영관수, 총좌석수
-INSERT INTO SCREENS 
-	VALUES(SCREENS_SEQ.NEXTVAL, 1, '상영관이름', 80);
+--INSERT INTO SCREENS 
+--	VALUES(SCREENS_SEQ.NEXTVAL, 1, '상영관이름', 80);
 --					  상영관, 극장,			  총좌석
-INSERT INTO SEATS 
-	VALUES(SEATS_SEQ.NEXTVAL, 1, 10, 8, '0');
+--INSERT INTO SEATS 
+--	VALUES(SEATS_SEQ.NEXTVAL, 1, 10, 8, '0');
 --			좌석, 상영관, 좌석 행, 좌석 열, 상태
-INSERT INTO TICKET
-	VALUES (TICKET_SEQ.NEXTVAL, 1, 8000);
+--INSERT INTO TICKET
+--	VALUES (TICKET_SEQ.NEXTVAL, 1, 8000);
 --			티켓, 상영관, 가격
-INSERT INTO BOOKING 
-	VALUES (BOOKING_SEQ.NEXTVAL, '1', 'lemon123', 1, 1, 102, 1, 1);
+--INSERT INTO BOOKING 
+--	VALUES (BOOKING_SEQ.NEXTVAL, '1', 'lemon123', 1, 1, 102, 1, 1);
 --						예매, 상태,		 극장, 상영관, 영화, 좌석, 티켓)
 --
 --SELECT * FROM MOVIE;
