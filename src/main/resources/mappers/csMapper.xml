@@ -8,8 +8,17 @@
 		INSERT INTO CUSTOMERSERVICE(cs_uid, cs_memid, cs_content,  cs_subject) 
 		VALUES(CUSTOMERSERVICE_SEQ.nextval, #{cs_memid}, #{cs_content}, #{cs_subject})
     </insert>
-	
 
+	
+	<!-- 게시판 글 답변 관리자-->
+	<update id="update" parameterType="com.lec.dto.CsDTO">
+		UPDATE CUSTOMERSERVICE
+		   SET cs_status  =   1,
+		   	   cs_answer  =   #{cs_answer}
+		 WHERE cs_uid = #{cs_uid} 
+    </update>
+	
+   
 	<select id="listPage" resultType="com.lec.dto.CsDTO" parameterType="com.lec.dto.Criteria">
 		SELECT cs_uid, cs_memid, cs_subject, cs_content, cs_status, cs_regdate 		  
 		FROM (SELECT cs_uid, cs_memid, cs_subject, cs_content, cs_status, cs_regdate , 

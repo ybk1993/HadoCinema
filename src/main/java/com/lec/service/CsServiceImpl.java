@@ -24,6 +24,12 @@ public class CsServiceImpl implements CsService {
 	public void write(CsDTO csDTO) throws Exception {
 		dao.write(csDTO);
 	}
+	
+	// 게시글 답변  update [ 관리자 ]
+	@Override
+	public void answer(CsDTO csDTO) throws Exception {
+		dao.answer(csDTO);
+	}
 
 
 

@@ -12,6 +12,9 @@ public interface CsService {
 	// 게시글 작성
 	public void write(CsDTO csDTO) throws Exception;
 
+	// 게시글 작성
+	public void answer(CsDTO csDTO) throws Exception;
+
 
 	// 게시물 목록 조회
 	public List<CsDTO> list(Criteria cri) throws Exception;

@@ -353,8 +353,8 @@ CREATE TABLE OTHERREVIEWS
     reviewUid2        NUMBER            NOT NULL, 
     rMemId2           VARCHAR2(100)     NULL, 
     rMovieName2       VARCHAR2(100)     NULL, 
-    reviewContent2    CLOB              NULL, 
-    reviewGrade2      VARCHAR2(100)     NULL, 
+    reviewContent2    VARCHAR2(1000)    NULL, 
+    reviewGrade2      NUMBER            NULL, 
     reviewHeart2      NUMBER            DEFAULT '0' NOT NULL,
     reviewRegdate2    DATE              NULL, 
     CONSTRAINT OTHERREVIEWS_PK PRIMARY KEY (reviewUid2)
@@ -362,10 +362,48 @@ CREATE TABLE OTHERREVIEWS
 
 INSERT INTO OTHERREVIEWS(reviewUid2, rMovieName2,  reviewContent2, reviewGrade2) 
 VALUES(OTHERREVIEWS_SEQ.nextval, '인셉션', '굳굳', 5);
+INSERT INTO OTHERREVIEWS(reviewUid2, rMovieName2,  reviewContent2, reviewGrade2) 
+VALUES(OTHERREVIEWS_SEQ.nextval, '인셉션', '굳굳', 6);
+INSERT INTO OTHERREVIEWS(reviewUid2, rMovieName2,  reviewContent2, reviewGrade2) 
+VALUES(OTHERREVIEWS_SEQ.nextval, '셉션', '굳굳', 7);
+INSERT INTO OTHERREVIEWS(reviewUid2, rMovieName2,  reviewContent2, reviewGrade2) 
+VALUES(OTHERREVIEWS_SEQ.nextval, '인셉션', '굳굳', 8);
+INSERT INTO OTHERREVIEWS(reviewUid2, rMovieName2,  reviewContent2, reviewGrade2) 
+VALUES(OTHERREVIEWS_SEQ.nextval, '인셉션', '굳굳', 9);
 
-SELECT * FROM OTHERREVIEWS;
 
 
-CREATE SEQUENCE OTHERREVIEWS_SEQ START WITH 1 INCREMENT BY 1 NOCACHE;
+INSERT INTO REVIEW2(reviewUid2, rMemId2, rMovieName2,  reviewContent2, reviewGrade2) 
+VALUES(REVIEW2_SEQ.nextval, 'r_mem_id', '인셉션', 'review_content', 5);
+INSERT INTO REVIEW2(reviewUid2, rMemId2, rMovieName2,  reviewContent2, reviewGrade2) 
+VALUES(REVIEW2_SEQ.nextval, 'bbb', '인셉션', '좋아요', 5);
+INSERT INTO REVIEW(reviewUid, rMemId, rMovieName,  reviewContent, reviewGrade) 
+VALUES(REVIEW_SEQ.nextval, 'ccc', '인셉션', '재밌어요', 10);
+INSERT INTO REVIEW(reviewUid, rMemId, rMovieName,  reviewContent, reviewGrade) 
+VALUES(REVIEW_SEQ.nextval, 'ddd', '인셉션', '슬퍼요', 7);
+INSERT INTO REVIEW(reviewUid, rMemId, rMovieName,  reviewContent, reviewGrade) 
+VALUES(REVIEW_SEQ.nextval, 'eee', '인셉션', '재미없어요', 1);
+INSERT INTO REVIEW(reviewUid, rMemId, rMovieName,  reviewContent, reviewGrade) 
+VALUES(REVIEW_SEQ.nextval, 'fff', '인셉션', '굳굳', 5);
 
-DROP TABLE OTHERREVIEWS CASCADE CONSTRAINTS;
+SELECT * FROM OTHERREVIEWS ORDER BY reviewUid2 desc;
+SELECT * FROM REVIEW2;
+SELECT count(*) FROM REVIEW2;
+
+
+CREATE TABLE REVIEW2
+(
+    reviewUid2        NUMBER            NOT NULL, 
+    rMemId2           VARCHAR2(20)      NULL, 
+    rMovieName2       VARCHAR2(100)     NULL, 
+    reviewContent2    CLOB              NULL, 
+    reviewGrade2      NUMBER            NULL, 
+    reviewHeart2      NUMBER            DEFAULT '0' NOT NULL,
+    reviewRegdate2    DATE              DEFAULT SYSDATE, 
+    CONSTRAINT REVIEW_PK2 PRIMARY KEY (reviewUid2)
+);
+
+CREATE SEQUENCE REVIEW2_SEQ START WITH 1 INCREMENT BY 1 NOCACHE;
+
+DROP TABLE REVIEW2 CASCADE CONSTRAINTS;
+DROP SEQUENCE REVIEW2_SEQ;

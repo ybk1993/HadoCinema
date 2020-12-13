@@ -14,28 +14,25 @@
 	</head>
 	
 	<script type="text/javascript">
+	$(document).ready(function(){
+		var formObj = $("form[name='updateForm']");
 		
-		$(document).ready(function(){
-			var formObj = $("form[name='readForm']");
-			
-			// 삭제
-			$(".delete_btn").on("click", function(){
-				formObj.attr("action", "/board/updateView");
-				formObj.attr("method", "get");
-				formObj.submit();				
-			})
-			
-
-			
-			// 목록
-			$(".list_btn").on("click", function(){
-				
-				location.href = "/mypage/qandaList?page=${cri.page}"
-						      +"&perPageNum=${cri.perPageNum}";
-			})
-
-
+		$(".cancel_btn").on("click", function(){
+			event.preventDefault();
+			location.href = "/mypage/qandaList2"
 		})
+		
+		$(".update_btn").on("click", function(){
+
+			formObj.attr("action", "/mypage/answerOk");
+			formObj.attr("method", "post");
+			formObj.submit();
+		})
+		
+		
+	})
+		
+
 	</script>
 	
 	<body>
@@ -49,11 +46,12 @@
 			</div>
 			
 			<section id="container">
-				<form name="readForm" role="form" method="post">
+				<form name="updateForm" role="form" method="post" action="/mypage/answerOk">
+			
 					<input type="hidden" id="cs_uid" name="cs_uid" value="${read.cs_uid}" />
 					<input type="hidden" id="page" name="page" value="${cri.page}"> 
 					<input type="hidden" id="perPageNum" name="perPageNum" value="${cri.perPageNum}"> 
-				</form>
+
 			    <div class="form-group">
 					<label for="cs_memid" class="col-sm-2 control-label">작성자</label>
 					<input type="text" id="cs_memid" name="cs_memid" class="form-control" value="${read.cs_memid}"  readonly="readonly"/>
@@ -71,28 +69,17 @@
 					<textarea id="cs_content" name="cs_content" class="form-control" readonly="readonly"><c:out value="${read.cs_content}" /></textarea>
 				</div>
 
-				<div class="form-group">
-					<c:choose>
-						<c:when test="${read.cs_status eq '0'}">
-				<label for="cs_status" class="col-sm-2 control-label"> <c:out value="==답변중==" /></label>
-						</c:when>
-						<c:when test="${read.cs_status eq '1'}">
-				<label for="cs_status" class="col-sm-2 control-label"> <c:out value="==답변완료==" /></label>
-						</c:when>
-					</c:choose>
+				<div class="form-group chk">
+					<label for="cs_status" class="col-sm-2 control-label">답변</label>
+					<input type="text" id="cs_answer" name="cs_answer" class="form-control" value="${read.cs_answer}"/>
 				</div>
-				
-				<div class="form-group">
-					<input type="text" id="cs_answer" name="cs_answer" class="form-control" value="${read.cs_answer}" readonly="readonly" />
-				</div>
-								
+						
 				<div>
-					<button type="button" class="delete_btn btn btn-warning">삭제</button>
-					<button type="button" class="list_btn btn btn-primary">목록</button>	
-				</div>
-				
-
-			</section>
+					<button class="update_btn" type="submit">답변작성</button>	
+					<button type="button" class="cancel_btn btn btn-warning">목록</button>
+				</div>				
+			</form>
+		</section>
 			<hr />
 		</div>
 	</body>

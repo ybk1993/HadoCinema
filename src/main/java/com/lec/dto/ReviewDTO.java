@@ -13,6 +13,9 @@ public class ReviewDTO {
 	private int reviewHeart;
 	
 	
+	
+	
+	
 	public String getrMemId() {
 		return rMemId;
 	}

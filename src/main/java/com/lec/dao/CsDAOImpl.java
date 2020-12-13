@@ -20,6 +20,12 @@ public class CsDAOImpl implements CsDAO {
 	public void write(CsDTO csDTO) throws Exception {
 		sqlSession.insert("csMapper.insert", csDTO);	
 	}
+	// 게시글 답변 [ 작성자 ]
+	@Override
+	public void answer(CsDTO csDTO) throws Exception {
+		sqlSession.update("csMapper.update", csDTO);
+//insert("csMapper.insert", csDTO);	
+	}
 
 	// 게시물 목록 조회
 	@Override

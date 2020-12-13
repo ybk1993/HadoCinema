@@ -13,16 +13,13 @@
 		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	   <link href="${pageContext.request.contextPath }/resources/css/rrr.css" rel="stylesheet">
 	 
-	 	<title>영화 관람평 모음</title>
+	 	<title>게시판</title>
 	</head>
-	
 
 	<body>
 		<div class="container">
 			<header>
-				<h4>관람평 모음 [ 네이버 - 최근 리뷰 만개 ]</h4>
-				<h5>영화 제목 / 리뷰 내용 검색이 가능합니다.</h5>
-				<a href = "https://movie.naver.com/movie/point/af/list.nhn?&page">네이버 영화 리뷰 바로가기</a>
+				<h1> 게시판</h1>
 			</header>
 			<hr />
 			
@@ -50,7 +47,7 @@
 						<script>
 							 $(function(){
 								 $('#searchBtn').click(function() {
-									 self.location = "reviewLists2" + '${pageMaker.makeQuery(1)}' + "&searchType=" + $("select option:selected").val() + "&keyword=" + encodeURIComponent($('#keywordInput').val());
+									 self.location = "CReviewLists" + '${pageMaker.makeQuery(1)}' + "&searchType=" + $("select option:selected").val() + "&keyword=" + encodeURIComponent($('#keywordInput').val());
 								 });
 							 });   
 						</script>
@@ -150,16 +147,16 @@
 					<div class="col-md-offset-3">
 						<ul class="pagination">
 							<c:if test="${pageMaker.prev}">
-								<li><a href="reviewLists2${pageMaker.makeSearch(pageMaker.startPage - 1)}">이전</a></li>
+								<li><a href="CReviewLists${pageMaker.makeSearch(pageMaker.startPage - 1)}">이전</a></li>
 							</c:if> 
 							
 							<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
 								<li <c:out value="${pageMaker.cri.page == idx ? 'class=info' : ''}" />>
-								<a href="reviewLists2${pageMaker.makeSearch(idx)}">${idx}</a></li>
+								<a href="CReviewLists${pageMaker.makeSearch(idx)}">${idx}</a></li>
 							</c:forEach>
 							
 							<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-								<li><a href="reviewLists2${pageMaker.makeSearch(pageMaker.endPage + 1)}">다음</a></li>
+								<li><a href="CReviewLists${pageMaker.makeSearch(pageMaker.endPage + 1)}">다음</a></li>
 							</c:if> 
 						</ul>
 					</div>
