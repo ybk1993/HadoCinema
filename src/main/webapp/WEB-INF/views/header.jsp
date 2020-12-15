@@ -12,9 +12,9 @@
       String uri = (String)request.getAttribute( "javax.servlet.forward.request_uri" ); 
 
       if(uri.equals("/main")){ %>
-		<a href="?logo-white"><img src="${pageContext.request.contextPath }/resources/image/logo-white.png" alt="logo" id="logo"></a>
+		<a href="${pageContext.request.contextPath }/main"><img src="${pageContext.request.contextPath }/resources/image/logo-white.png" alt="logo" id="logo"></a>
       <%}else{ %>
-        <a href="?logo-black"><img src="${pageContext.request.contextPath }/resources/image/logo-black.png" alt="logo" id="logo"></a>
+        <a href="${pageContext.request.contextPath }/main"><img src="${pageContext.request.contextPath }/resources/image/logo-black.png" alt="logo" id="logo"></a>
       <%} %>
       </div>
 
@@ -32,8 +32,10 @@
 	      		 		<span id="logID" style="margin-right: 1vw;">${login }님 환영합니다.</span>
       		 		</c:otherwise>
       		 	</c:choose>
-       		 <a href="logout" class="logout" id="login" style="margin-right: 1vw;">로그아웃</a>
-       		<a id="login" data-toggle="modal" data-target="#mypageMForm">마이페이지</a>
+       		 <a href="${pageContext.request.contextPath }/logout" class="logout" id="login" style="margin-right: 1vw;">로그아웃</a>
+       		 <c:if test="${login ne 'admin' }">
+       			<a id="login" data-toggle="modal" data-target="#mypageMForm">마이페이지</a>
+       		 </c:if>
 	       </c:otherwise>
        </c:choose>
       </div>
@@ -44,30 +46,54 @@
       <li class="col-md-1 dropdown hdmenu menu">
         <a href="">리뷰</a>
         <ul class="justify-content-center dropdown-menu sub sb1">
-          <li><a class="grey-text submenu">리뷰 크롤링</a></li>
-          <c:if test="${not empty login and login eq 'admin' }">
-          	<li><a class="grey-text submenu">리뷰 쓰기</a></li>
+          <li><a href="${pageContext.request.contextPath }/review/reviewLists2" class="grey-text submenu">모든 리뷰</a></li>
+          <c:if test="${not empty login}">
+          	<li><a href="${pageContext.request.contextPath }/review/reviewLists" class="grey-text submenu">해도시네마 리뷰</a></li>
           </c:if>
         </ul>
       </li>
+      
+      <%
+      String uri2 = (String)request.getAttribute( "javax.servlet.forward.request_uri" ); 
+      if(uri2.equals("/main")){ %>
+      <c:if test="${not empty login}">   
       <li class="col-md-1 dropdown hdmenu menu">
-        <a href="movieInfo/movieChart">영화</a>
+        <a href="${pageContext.request.contextPath }/review/writeReview" data-toggle="modal" data-target="#myModal">리뷰 작성</a>
+      </li>
+      </c:if>
+      <%} %>
+      
+      <li class="col-md-1 dropdown hdmenu menu">
+        <a href="">영화</a>
         <ul class="justify-content-center dropdown-menu sub sb2">
-          <li><a href="movieInfo/movieChart" class="grey-text submenu">목록</a></li>
-          <c:if test="${not empty login and login eq 'admin' }">
-	          <li><a href="movieInfo/movieSave" class="grey-text submenu">영화등록</a></li>
-          </c:if>
+          <li><a href="${pageContext.request.contextPath }/movieInfo/movieChart" class="grey-text submenu">목록</a></li>
         </ul>
       </li>
+      
+
       <li class="col-md-1 dropdown hdmenu menu">
         <a href="">고객센터</a>
         <ul class="justify-content-center dropdown-menu sub sb4">
-          <li><a href="faq/faq" class="grey-text submenu">FAQ문의</a></li>
-          <c:if test="${not empty login and login eq 'admin' }">
-	          <li><a href="faq/list" class="grey-text submenu">FAQ등록</a></li>          
-          </c:if>
+              <c:if test="${not empty login}">  
+          <li><a href="${pageContext.request.contextPath }/faq/faq" class="grey-text submenu">FAQ문의</a></li>
+              </c:if>   
+          <li><a href="${pageContext.request.contextPath }/cs/qanda" class="grey-text submenu">1:1 문의하기</a></li>
         </ul>
       </li>
+
+
+      
+      <c:if test="${not empty login and login eq 'admin' }">
+      <li class="col-md-1 dropdown hdmenu menu">
+        <a href="">관리자</a>
+        <ul class="justify-content-center dropdown-menu sub sb4">
+          <li><a href="${pageContext.request.contextPath }/movieInfo/movieSave" class="grey-text submenu">영화등록</a></li>
+          <li><a href="${pageContext.request.contextPath }/faq/list" class="grey-text submenu">FAQ등록</a></li>          
+          <li><a href="${pageContext.request.contextPath }/mypage/qandaList2" class="grey-text submenu">1:1문의 답변하기</a></li>
+        </ul>
+      </li>       
+      </c:if>
+      
     </ul>
 
 

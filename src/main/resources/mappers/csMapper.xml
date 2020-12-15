@@ -25,6 +25,13 @@
 		      ROW_NUMBER() OVER(ORDER BY cs_uid DESC) AS RNUM FROM CUSTOMERSERVICE) CS
 		WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd} ORDER BY cs_uid DESC
 	</select>	
+   
+	<select id="listPageM" resultType="com.lec.dto.CsDTO" parameterType="com.lec.dto.CsDTO">
+
+	SELECT cs_uid, cs_memid, cs_subject, cs_content, cs_status, cs_regdate FROM CUSTOMERSERVICE
+	WHERE cs_memid = #{cs_memid} ORDER BY #{cs_uid} DESC
+	
+	</select>	
 	
 	<select id="listCount" resultType="int">
 	<![CDATA[
@@ -33,6 +40,7 @@
 		 WHERE cs_uid > 0
 	]]>
 	</select>
+	
 	
 	<select id="read" resultType="com.lec.dto.CsDTO" parameterType="int">
 		SELECT cs_uid, cs_memid, cs_subject, cs_content, cs_status, cs_regdate, cs_answer

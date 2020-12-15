@@ -107,6 +107,16 @@ local.properties
 *.tar.gz
 *.rar
 
+# DBeaver
+.dbeaver/
+data-sources.json
+credentials-config.json
+project-metadata.json
+### DBeaver ###
+# ide config file
+.dbeaver-data-sources*.xml
+.metadata
+
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 

@@ -62,21 +62,25 @@ public class MemRestController {
     public void login(Model model, memberDTO dto, HttpServletRequest request) {
     	memberDTO memberdto = memservice.login(dto);
     	HttpSession session = request.getSession();
-    	
-        String strDate = null;
-        SimpleDateFormat tranSimpleFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.ENGLISH);
-        strDate = tranSimpleFormat.format(memberdto.getSignupdate());
         
-
-    	session.setAttribute(LOGIN, memberdto.getUserid());
-    	session.setAttribute("name", memberdto.getName());
-    	session.setAttribute("email", memberdto.getEmail());
-    	session.setAttribute("phone", memberdto.getPhone());
-    	session.setAttribute("zipcode", memberdto.getZipcode());
-    	session.setAttribute("add1", memberdto.getAddress1());
-    	session.setAttribute("add2", memberdto.getAddress2());
-    	session.setAttribute("signupdate", strDate);
-    	session.setAttribute("status", memberdto.getStatus());
+        if(memberdto.getUserid().equals("admin")) {
+        	session.setAttribute(LOGIN, memberdto.getUserid());
+        }else {
+        	String strDate = null;
+        	SimpleDateFormat tranSimpleFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.ENGLISH);
+        	strDate = tranSimpleFormat.format(memberdto.getSignupdate());
+        	
+        	session.setAttribute(LOGIN, memberdto.getUserid());
+        	session.setAttribute("name", memberdto.getName());
+        	session.setAttribute("email", memberdto.getEmail());
+        	session.setAttribute("phone", memberdto.getPhone());
+        	session.setAttribute("zipcode", memberdto.getZipcode());
+        	session.setAttribute("add1", memberdto.getAddress1());
+        	session.setAttribute("add2", memberdto.getAddress2());
+        	session.setAttribute("signupdate", strDate);
+        	session.setAttribute("status", memberdto.getStatus());
+        	
+        }
 		
     }
     
@@ -95,8 +99,7 @@ public class MemRestController {
         HttpSession session = request.getSession();
         
         if (session.getAttribute(LOGIN) != null) {
-        	session.removeAttribute(LOGIN);
-//        	session.invalidate(); // 세션 초기화
+        	session.invalidate(); // 세션 초기화
         }
         ModelAndView mav = new ModelAndView("main/main"); //main/main.jsp를 뿌려준다.
         mav.setViewName("redirect:/main");	// url 경로 /main으로 변경 안하면 /logout

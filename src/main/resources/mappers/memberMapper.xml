@@ -70,63 +70,7 @@ THEATERS, SCREENS, SEATS, TICKET, MOVIE, BOOKING
 		WHERE userid = #{userid}
 	</update>
 
-	<!-- 회원 정보 -->
-	<select id="getMemInfo" parameterType="com.lec.dto.memberDTO" resultType="com.lec.dto.memberDTO">
-		SELECT userid, userpw, name, email, phone, zipcode, 
-			  				 address1, address2, signupdate, status, booking, cancle, point
-		FROM MEMBERS WHERE userid = #{userid}
-	</select>
-	
-	<!-- 아이디 찾기 -->
-	<select id="findMemUserid" resultType="com.lec.dto.memberDTO">
-		SELECT userid FROM MEMBERS WHERE name = #{name} AND email = #{email}
-	</select>
 
-	<!-- 비번 찾기 -->
-	<select id="findMemUserpw" resultType="com.lec.dto.memberDTO">
-		SELECT userpw FROM MEMBERS WHERE userid = #{userid} AND email = #{email}
-	</select>
- 
-	<!-- 메일 중복 체크 -->
-	<select id="chkMemEmail" resultType="com.lec.dto.memberDTO">
-		SELECT email FROM MEMBERS WHERE email= #{email}
-	</select>
-	
-	<!-- 탈퇴하기 -->
-	<update id="withdrawMem">
-		UPDATE MEMBERS SET status = #{status} WHERE userid = #{userid}
-	</update>
-	
-	<!-- 포인트 조회 -->
-	<select id="getMemPoint" resultType="com.lec.dto.memberDTO">
-		SELECT userid, point FROM MEMBERS WHERE USERID = #{userid}
-	</select>
-	
-	<!-- 예매내역 조회 -->
-	<select id="getMembooking" resultType="com.lec.dto.memberDTO">
-		SELECT  B.BOOKING_STATUS, 
-				M.userID, 
-				V.MOVIE_NAME, 
-				T.THEATER_NAME, 
-				C.SCREEN_NAME, 
-				S.SEAT_NUM, 
-				K.TICKET_PRICE 
-		FROM BOOKING B
-		JOIN MEMBERS M
-		   ON B.B_ID = M.userID 
-		JOIN THEATERS T
-		   ON B.B_THEATER_mem_uid = T.THEATER_mem_uid 
-		JOIN SCREENS C
-		   ON B.B_SCREEN_mem_uid  = C.SCREEN_mem_uid 
-		JOIN MOVIE V
-		   ON B.B_MOVIE_mem_uid = V.MOVIE_mem_uid 
-		JOIN TICKET K
-		   ON B.B_TICKET_mem_uid = K.TICKET_mem_uid
-		JOIN SEATS S
-		   ON B.B_SEAT_mem_uid = S.SEAT_mem_uid
-		WHERE B.B_ID = #{userid}
-	</select>
- 
 
 	
 </mapper>

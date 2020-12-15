@@ -38,7 +38,6 @@ public class FAQController {
 		public String faq(Model model) {
 			command = new BListCommand();
 			command.execute(model);		
-//			return "faq/faq";
 			return "faq/faq";
 		}
 
@@ -46,7 +45,7 @@ public class FAQController {
 		public String list(Model model) {
 			command = new BListCommand();
 			command.execute(model);		
-			return "admin/list";
+			return "faq/list";
 		}
 		
 		@RequestMapping("/write.do")

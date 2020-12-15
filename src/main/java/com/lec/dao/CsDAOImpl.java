@@ -24,16 +24,22 @@ public class CsDAOImpl implements CsDAO {
 	@Override
 	public void answer(CsDTO csDTO) throws Exception {
 		sqlSession.update("csMapper.update", csDTO);
-//insert("csMapper.insert", csDTO);	
 	}
 
-	// 게시물 목록 조회
+	// 게시물 전체 목록 조회
 	@Override
 	public List<CsDTO> list(Criteria cri) throws Exception {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("csMapper.listPage", cri);
 	}
 	
+	// 내 게시물 전체 목록 조회
+	@Override
+	public List<CsDTO> listM(CsDTO csDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("csMapper.listPageM", csDTO);
+	}
+
 	// 게시물 총 갯수
 	@Override
 	public int listCount() throws Exception {

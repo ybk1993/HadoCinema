@@ -39,12 +39,20 @@ public class CsServiceImpl implements CsService {
 
 		return dao.list(cri);
 	}
-
+	// 내 게시물 목록 조회
+	@Override
+	public List<CsDTO> listM(CsDTO csDTO) throws Exception {
+		
+		return dao.listM(csDTO);
+	}
+	
+	
 	// 게시물 총 갯수
 	@Override
 	public int listCount() throws Exception {
 		return dao.listCount();
 	}
+	
 
 	// 게시물 읽기
 	@Override

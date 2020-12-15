@@ -3,6 +3,9 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <html>
+<jsp:include page="../cdn.jsp"></jsp:include>
+<link href="${pageContext.request.contextPath }/resources/css/main_top.css" rel="stylesheet">
+
 	<head>
 		<!-- 합쳐지고 최소화된 최신 CSS -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
@@ -10,6 +13,7 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 		
 		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+ 	 	<jsp:include page="../header.jsp"></jsp:include>
 	 
 	 	<title>게시판</title>
 	 	<style type="text/css">
@@ -19,14 +23,15 @@
 	<body>
 		<div class="container">
 			<header>
-				<h1> 게시판</h1>
+			<br><br>
+				<h4> 1:1문의 답변하기 </h4>
 			</header>
 			<hr />	
 			<section id="container">
 				<form role="form" method="get">
 					<table class="table table-hover">
 						<thead>
-							<tr><th>번호</th><th>제목</th><th>작성자</th><th>답변상태</th><th>등록일</th></tr>
+							<tr><th>번호</th><th>제목</th><th>작성자 메일</th><th>답변상태</th><th>등록일</th></tr>
 						</thead>
 						 <%-- request.getAttribute("list") --%>
 						<c:forEach items="${list}" var = "list">
