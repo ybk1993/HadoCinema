@@ -69,7 +69,7 @@ aria-hidden="true">
                       <label style="left: 15px;">우편번호</label>
                     </div>
                       <input type="button" id="daumPost" class="btn btn-outline-info btn-sm waves-effect ml-auto" value="검색"
-                        onclick="daumPostcode2()"/>
+                        onclick="daumPostcode()"/>
                   </div>
                 </div>
 
@@ -88,8 +88,7 @@ aria-hidden="true">
 
               </form>
                 <div class="text-center form-sm mt-2">
-                	<button type="button" class="btn btn-info updateBtn">수정완료<i class="fas fa-sign-in ml-1"></i></button>
-                  <!-- <input type="button" id="updateOk" class="btn btn-info" value="수정완료"/> <i class="fas fa-sign-in ml-1"></i> -->
+                	<input type="button" id="updateOk" class="btn btn-info" value="수정완료"/><i class="fas fa-sign-in ml-1"></i>
                 </div>
             </div>
             <!--Footer-->

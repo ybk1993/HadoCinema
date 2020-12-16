@@ -24,14 +24,14 @@ public class ReviewDAOImpl2 implements ReviewDAO2 {
 	@Override
 	public List<ReviewDTO2> list(SearchCriteria scri) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList("review2Mapper.listPage", scri);
+		return sqlSession.selectList("review2Mapper.listPageC", scri);
 	}
 	
 	// 게시물 총 갯수
 	@Override
 	public int listCount(SearchCriteria scri) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne("review2Mapper.listCount", scri);
+		return sqlSession.selectOne("review2Mapper.listCountC", scri);
 	}
 
 	

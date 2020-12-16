@@ -15,8 +15,8 @@ public class RDAOImpl implements RDAO {
 
 	// 리뷰 크롤링
 	@Override
-	public void writeReview(ReviewDTO2 reviewsDTO2) throws Exception {
-		sqlSession.insert("review2Mapper.insert", reviewsDTO2);
+	public void writeReview(ReviewDTO2 reviewDTO2) throws Exception {
+		sqlSession.insert("review2Mapper.insertC", reviewDTO2);
 		
 	}
 

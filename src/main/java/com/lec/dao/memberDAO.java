@@ -8,8 +8,11 @@ public interface memberDAO {
 		
 		public List<memberDTO> allMember(memberDTO dto);
 	
-		//중복체크
+		//아이디 중복체크
 		public String getMemUserid(String userid);
+
+		//메일 중복 체크
+		public String chkMemEmail(String email);
 	
 		//회원가입
 		public boolean register(memberDTO dto);
@@ -19,42 +22,11 @@ public interface memberDAO {
 
 		//회원정보수정
 		public void updateMemInfo(memberDTO dto);
-//		
-//		//회원정보
-//		public List<memberDTO> getMemInfo(memberDTO dto);
-//		
+
 //		//아이디찾기
 //		public String findMemUserid(memberDTO dto);
-//		
 //		//비밀번호찾기
 //		public String findMemUserpw(memberDTO dto);
-//			
-//		//메일 중복 체크
-//		public String chkMemEmail(String email);
-//		
-//		
 //		//탈퇴하기
 //		public void withdrawMem(memberDTO dto);
-//		
-//		//포인트 조회
-//		public void getMemPoint(memberDTO dto);
-//		
-//		//예매내역 조회
-//		public void getMembooking(memberDTO dto);
-
-
 }
-
-//		@GetMapping("")
-//		public login getAllUsers() {
-//		    return memservice.??;
-//		}
-//
-//public List<CGVReserveDto> getCGVReserveList(CGVReserveDto dto) {
-//	List<CGVReserveDto> list = new ArrayList<CGVReserveDto>();
-//	list = session.selectList("getCGVReserveList", dto);
-//	return list;
-//}
-
-
-

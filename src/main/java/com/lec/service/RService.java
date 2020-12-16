@@ -12,6 +12,6 @@ public interface RService {
 
 	
 	// 리뷰 크롤링
-	public void writeReview(ReviewDTO2 reviewsDTO2) throws Exception;
+	public void writeReview(ReviewDTO2 reviewDTO2) throws Exception;
 
 }

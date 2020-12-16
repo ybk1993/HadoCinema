@@ -3,9 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-<!-- SQL Error [2291] [23000]: ORA-02291: 
-integrity constraint (HC04A.FK_BOOKING_B_MOVIE_mem_uid) 
-violated - parent key not found
+<!-- 
 
 CREATE TABLE MEMBERS
 (
@@ -20,12 +18,9 @@ CREATE TABLE MEMBERS
     address2       VARCHAR2(100)    NOT NULL, 
     signupdate    DATE             NOT NULL, 
     status         CHAR(1)          NOT NULL, 
-    booking        VARCHAR2(300)    NULL, 
-    cancle         VARCHAR2(300)    NULL, 
-    point          NUMBER           NULL, 
+
     CONSTRAINT MEMBERS_PK PRIMARY KEY (mem_uid)
 );
-THEATERS, SCREENS, SEATS, TICKET, MOVIE, BOOKING
  -->
  
  
@@ -37,7 +32,6 @@ THEATERS, SCREENS, SEATS, TICKET, MOVIE, BOOKING
 		SELECT * FROM MEMBERS
 	</select> 
 	 
-	
 	<!-- 중복체크 -->
 	<select id="getMemUserid" resultType="java.lang.String">
 		SELECT userid FROM MEMBERS WHERE userid = #{userid}
@@ -46,30 +40,37 @@ THEATERS, SCREENS, SEATS, TICKET, MOVIE, BOOKING
 	<!-- 회원 가입 -->
 	<insert id="register" parameterType="com.lec.dto.memberDTO">
 		INSERT INTO MEMBERS(mem_uid, userid, userpw, name, email, phone, zipcode, 
-							address1, address2, signupdate, status, point)
+							address1, address2, signupdate, status)
 			 VALUES(MEMBERS_SEQ.NEXTVAL, #{userid}, #{userpw}, #{name}, #{email}, #{phone}, #{zipcode}, 
-							#{address1}, #{address2}, SYSDATE, '0', 0)
+							#{address1}, #{address2}, SYSDATE, '0')
 	</insert>
 	
 	<!-- 로그인 -->
 	<select id="login" resultType="com.lec.dto.memberDTO">
 		SELECT userid, name, email, phone, 
-				zipcode, address1, address2, signupdate, 
-	  			status
+				zipcode, address1, address2, signupdate, status
 	  			FROM MEMBERS WHERE userid = #{userid} AND userpw = #{userpw}
-<!-- 
-		FROM MEMBERS WHERE userid = #{userid} and userpw = #{userpw}
- -->
 	</select>
 	
 	<!-- 회원정보수정 -->
 	<update id="updateMemInfo">
 		UPDATE MEMBERS 
-		SET userpw = #{userpw}, email = #{email}, phone = #{phone}, 
+		SET userpw = #{userpw}, name=#{name}, email = #{email}, phone = #{phone}, 
 			zipcode = #{zipcode}, address1 = #{address1}, address2 = #{address2}
 		WHERE userid = #{userid}
 	</update>
 
+	<!-- 메일 중복 체크 -->
+	<select id="chkMemEmail" resultType="java.lang.String">
+		SELECT email FROM MEMBERS WHERE email= #{email}
+	</select>
+
+	<!-- 회원 정보 -->
+	<select id="getMemInfo" resultType="com.lec.dto.memberDTO">
+		SELECT userid, name, email, phone, zipcode, 
+				address1, address2, signupdate, status
+		FROM MEMBERS WHERE userid = #{userid}
+	</select>
 
 
 	

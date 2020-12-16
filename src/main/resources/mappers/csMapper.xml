@@ -4,14 +4,14 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="csMapper">
 	<!-- 게시판 글 작성 -->
-	<insert id="insert">
+	<insert id="insertCs">
 		INSERT INTO CUSTOMERSERVICE(cs_uid, cs_memid, cs_content,  cs_subject) 
 		VALUES(CUSTOMERSERVICE_SEQ.nextval, #{cs_memid}, #{cs_content}, #{cs_subject})
     </insert>
 
 	
 	<!-- 게시판 글 답변 관리자-->
-	<update id="update" parameterType="com.lec.dto.CsDTO">
+	<update id="updateCs" parameterType="com.lec.dto.CsDTO">
 		UPDATE CUSTOMERSERVICE
 		   SET cs_status  =   1,
 		   	   cs_answer  =   #{cs_answer}
@@ -19,21 +19,15 @@
     </update>
 	
    
-	<select id="listPage" resultType="com.lec.dto.CsDTO" parameterType="com.lec.dto.Criteria">
+	<select id="listPageCs" resultType="com.lec.dto.CsDTO" parameterType="com.lec.dto.Criteria">
 		SELECT cs_uid, cs_memid, cs_subject, cs_content, cs_status, cs_regdate 		  
 		FROM (SELECT cs_uid, cs_memid, cs_subject, cs_content, cs_status, cs_regdate , 
 		      ROW_NUMBER() OVER(ORDER BY cs_uid DESC) AS RNUM FROM CUSTOMERSERVICE) CS
 		WHERE RNUM BETWEEN #{rowStart} AND #{rowEnd} ORDER BY cs_uid DESC
 	</select>	
-   
-	<select id="listPageM" resultType="com.lec.dto.CsDTO" parameterType="com.lec.dto.CsDTO">
 
-	SELECT cs_uid, cs_memid, cs_subject, cs_content, cs_status, cs_regdate FROM CUSTOMERSERVICE
-	WHERE cs_memid = #{cs_memid} ORDER BY #{cs_uid} DESC
 	
-	</select>	
-	
-	<select id="listCount" resultType="int">
+	<select id="listCountCs" resultType="int">
 	<![CDATA[
 		SELECT COUNT(cs_uid)
 		  FROM CUSTOMERSERVICE
@@ -42,7 +36,7 @@
 	</select>
 	
 	
-	<select id="read" resultType="com.lec.dto.CsDTO" parameterType="int">
+	<select id="readCs" resultType="com.lec.dto.CsDTO" parameterType="int">
 		SELECT cs_uid, cs_memid, cs_subject, cs_content, cs_status, cs_regdate, cs_answer
 		FROM CUSTOMERSERVICE WHERE cs_uid = #{cs_uid}
 	</select>

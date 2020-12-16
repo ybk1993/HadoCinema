@@ -1,47 +1,28 @@
 -- 삭제 가능한 테이블과 커리문 조회
 SELECT 'DROP TABLE "' || TABLE_NAME || '" CASCADE CONSTRAINTS;' FROM user_tables;
--- 테이블 삭제
---DROP TABLE "THEATERS" CASCADE CONSTRAINTS;
-DROP TABLE "MEMBERS" CASCADE CONSTRAINTS;
---DROP TABLE "SCREENS" CASCADE CONSTRAINTS;
-DROP TABLE "MOVIE" CASCADE CONSTRAINTS;
---DROP TABLE "SEATS" CASCADE CONSTRAINTS;
---DROP TABLE "TICKET" CASCADE CONSTRAINTS;
---DROP TABLE "REVIEW" CASCADE CONSTRAINTS;
---DROP TABLE "NOTICE" CASCADE CONSTRAINTS;
-DROP TABLE "FAQ" CASCADE CONSTRAINTS;
---DROP TABLE "CUSTOMERSERVICE" CASCADE CONSTRAINTS;
---DROP TABLE "BOOKING" CASCADE CONSTRAINTS;
+-- 전체 시퀀스 조회
+SELECT * FROM USER_SEQUENCES;
 
+-- 테이블 삭제
+DROP TABLE "MEMBERS" CASCADE CONSTRAINTS;
+DROP TABLE "MOVIE" CASCADE CONSTRAINTS;
+DROP TABLE "FAQ" CASCADE CONSTRAINTS;
+DROP TABLE "CUSTOMERSERVICE" CASCADE CONSTRAINTS;
+DROP TABLE "REVIEW" CASCADE CONSTRAINTS;
+DROP TABLE "REVIEW2" CASCADE CONSTRAINTS;
 
 -- 시퀀스 삭제
 DROP SEQUENCE MEMBERS_SEQ;
---DROP SEQUENCE CS_SEQ;
---DROP SEQUENCE NOTICE_SEQ;
---DROP SEQUENCE FAQ_SEQ;
---DROP SEQUENCE SEATS_SEQ;
---DROP SEQUENCE TICKET_SEQ;
---DROP SEQUENCE SCREENS_SEQ;
---DROP SEQUENCE THEATERS_SEQ;
---DROP SEQUENCE BOOKING_SEQ;
---DROP SEQUENCE movie_seq;
-
--- THEATERS Table Create SQL
---CREATE TABLE THEATERS
---(
---    theater_uid           NUMBER           NOT NULL, 
---    theater_place         VARCHAR2(20)     NOT NULL, 
---    theater_name          VARCHAR2(50)     NOT NULL, 
---    theater_address       VARCHAR2(300)    NOT NULL, 
---    theater_tot_screen    NUMBER           NOT NULL, 
---    theater_tot_seats     NUMBER           NOT NULL, 
---    CONSTRAINT THEATERS_PK PRIMARY KEY (theater_uid)
---);
+DROP SEQUENCE FAQ_SEQ;
+DROP SEQUENCE movie_seq;
+DROP SEQUENCE REVIEW2_SEQ;
+DROP SEQUENCE REVIEW_SEQ;
+DROP SEQUENCE CUSTOMERSERVICE_SEQ;
 
 -- THEATERS Table Create SQL
 CREATE TABLE MEMBERS
 (
-    mem_uid            NUMBER           NOT NULL, 
+    mem_uid        NUMBER           NOT NULL, 
     userid         VARCHAR2(20)     NOT NULL UNIQUE, 
     userpw         VARCHAR2(20)     NOT NULL, 
     name           VARCHAR2(20)     NOT NULL, 
@@ -50,11 +31,8 @@ CREATE TABLE MEMBERS
     zipcode        VARCHAR2(20)     NULL, 
     address1       VARCHAR2(100)    NULL, 
     address2       VARCHAR2(100)    NULL, 
-    signupdate    DATE              NULL, 
+    signupdate     DATE             NULL, 
     status         CHAR(1)          NOT NULL, 
-    booking        VARCHAR2(300)    NULL, 
-    cancle         VARCHAR2(300)    NULL, 
-    point          NUMBER           NULL, 
     CONSTRAINT MEMBERS_PK PRIMARY KEY (mem_uid)
 );
 
@@ -73,7 +51,6 @@ CREATE TABLE MOVIE
     movie_showtime		 VARCHAR2(20)      NOT NULL,
     CONSTRAINT MOVIE_PK PRIMARY KEY (movie_uid)
 );
-
 
 CREATE TABLE FAQ
 (
@@ -120,30 +97,18 @@ CREATE TABLE REVIEW2
     CONSTRAINT REVIEW_PK2 PRIMARY KEY (reviewUid2)
 );
 
+-- 리뷰 크롤링 시퀀스
 CREATE SEQUENCE REVIEW2_SEQ START WITH 1 INCREMENT BY 1 NOCACHE;
-
-
+-- 고객센터 1:1문의 시퀀스
 CREATE SEQUENCE CUSTOMERSERVICE_SEQ START WITH 1 INCREMENT BY 1 NOCACHE;
-
+-- 회원 리뷰 시퀀스
 CREATE SEQUENCE REVIEW_SEQ START WITH 1 INCREMENT BY 1 NOCACHE;
-
-
-CREATE SEQUENCE movie_seq
-START WITH 1
-INCREMENT BY 1
-NOCACHE;
-
+-- 영화 시퀀스
+CREATE SEQUENCE movie_seq START WITH 1 INCREMENT BY 1 NOCACHE;
+-- FAQ 시퀀스
+CREATE SEQUENCE FAQ_SEQ START WITH 1 INCREMENT BY 1 NOCACHE;
 -- 회원관련 시퀀스
-CREATE SEQUENCE MEMBERS_SEQ
-START WITH 1
-INCREMENT BY 1
-NOCACHE;
-
-CREATE SEQUENCE FAQ_SEQ
-START WITH 1
-INCREMENT BY 1
-NOCACHE;
-
+CREATE SEQUENCE MEMBERS_SEQ START WITH 1 INCREMENT BY 1 NOCACHE;
 
 -- FK 지정
 
@@ -152,41 +117,52 @@ INSERT INTO MEMBERS(mem_uid, userid, userpw, name, status)
   	 VALUES(MEMBERS_SEQ.NEXTVAL, 'admin', 'admin', '관리자', '1');
 -- 데이터
 INSERT INTO MEMBERS(mem_uid, userid, userpw, name, email, phone, zipcode, 
-					address1, address2, signupdate, status, booking, cancle, point)
+					address1, address2, signupdate, status)
   	 VALUES(MEMBERS_SEQ.NEXTVAL, 'apple123', '1111', '사과', 'a@gmail.com', '010-1111-1111', 
-  	 		'00135', '광교중앙로 1', '푸르지오', SYSDATE, '1', '도굴', '디바', 300);
+  	 		'00135', '광교중앙로 1', '푸르지오', SYSDATE, '1');
   	 	
 INSERT INTO MEMBERS(mem_uid, userid, userpw, name, email, phone, zipcode, 
-					address1, address2, signupdate, status, booking, cancle, point)
+					address1, address2, signupdate, status)
   	 VALUES(MEMBERS_SEQ.NEXTVAL, 'lemon123', '2222', '레몬', 'l@gmail.com', '010-2222-2222', 
-  	 		'22135', '위올라이로 1', '스카이캐슬', SYSDATE, '1', '날다', '히히', 100);
-
-INSERT INTO MEMBERS(mem_uid, userid, userpw, name, email, phone, zipcode, 
-					address1, address2, signupdate, status, booking, cancle, point)
-  	 VALUES(MEMBERS_SEQ.NEXTVAL, 'apple999', '3333', '금사과', 'aa1@gmail.com', '010-1111-4444', 
-  	 		'44431', '진실로 1', '진실의방', SYSDATE, '0', '굴굴', '바바', 300);
+  	 		'22135', '위올라이로 1', '스카이캐슬', SYSDATE, '1');
   	 	
 INSERT INTO MEMBERS(mem_uid, userid, userpw, name, email, phone, zipcode, 
-					address1, address2, signupdate, status, point)
-  	 VALUES(MEMBERS_SEQ.NEXTVAL, 'banana123', '5555', '바나나', 'ban@gmail.com', '010-1111-2222', 
-  	 		'12123', '무왕로 1', '진격', SYSDATE, '0', 0);
+					address1, address2, signupdate, status)
+  	 VALUES(MEMBERS_SEQ.NEXTVAL, 'banana123', '3333', '바나나', 'ban@gmail.com', '010-1111-2222', 
+  	 		'12123', '시골로 1', '초가집', SYSDATE, '1');
   	 	
 INSERT INTO MEMBERS(mem_uid, userid, userpw, name, email, phone, zipcode, 
-					address1, address2, signupdate, status, point)
-  	 VALUES(MEMBERS_SEQ.NEXTVAL, 'melon', '0000', '김멜론', 'ban@gmail.com', '010-1111-2222', 
-  	 		'12123', '무왕로 1', '진격', SYSDATE, '0', 0);
+					address1, address2, signupdate, status)
+  	 VALUES(MEMBERS_SEQ.NEXTVAL, 'melon123', '0000', '김멜론', 'ban@gmail.com', '010-1111-2222', 
+  	 		'12123', '무왕로 1', '협곡아파트', SYSDATE, '1');
 
 INSERT INTO REVIEW(reviewUid, rMemId, rMovieName,  reviewContent, reviewGrade) 
-VALUES(REVIEW_SEQ.nextval, 'ddd', '인셉션', '슬퍼요', 7);
+VALUES(REVIEW_SEQ.nextval, 'apple123', '인셉션', '솔직히 보면서 무슨내용인지 이해가 안갔습니다. 2~3번은 봐야 이해 갈것같아요', 3);
 
 INSERT INTO REVIEW(reviewUid, rMemId, rMovieName,  reviewContent, reviewGrade) 
-VALUES(REVIEW_SEQ.nextval, 'eee', '인셉션', '재미없어요', 1);
+VALUES(REVIEW_SEQ.nextval, 'lemon123', '어벤져스 : 엔드게임', '해리포터 시리즈 이후 최고의 영화', 9);
 
 INSERT INTO REVIEW(reviewUid, rMemId, rMovieName,  reviewContent, reviewGrade) 
-VALUES(REVIEW_SEQ.nextval, 'fff', '인셉션', '굳굳', 5);
+VALUES(REVIEW_SEQ.nextval, 'banana123', '도굴', '재밌었습니다. 나름 마지막에 반전도 있었고, 하지만 동료가 생기는 과정이 너무 생략된점이 아쉽네요.', 7);
+
+INSERT INTO REVIEW(reviewUid, rMemId, rMovieName,  reviewContent, reviewGrade) 
+VALUES(REVIEW_SEQ.nextval, 'melon123', '삼진그룹 영어토익반', '그냥저냥 볼만했던 것 같습니다. ', 5);
+
+INSERT INTO REVIEW(reviewUid, rMemId, rMovieName,  reviewContent, reviewGrade) 
+VALUES(REVIEW_SEQ.nextval, 'melon123', '인셉션', '2번 보셔야 지립니다.', 8);
+
+INSERT INTO REVIEW(reviewUid, rMemId, rMovieName,  reviewContent, reviewGrade) 
+VALUES(REVIEW_SEQ.nextval, 'apple123', '도굴', '이거 보느니 차라리 도둑들 볼것같네요', 2);
+
+INSERT INTO REVIEW(reviewUid, rMemId, rMovieName,  reviewContent, reviewGrade) 
+VALUES(REVIEW_SEQ.nextval, 'banana123', '어벤져스 : 엔드게임', '마블 빅팬인데 마지막 장면 진짜 대박임..', 10);
 
 -- 회원목록, 아이디중복, 로그인, 회원정보, 
-SELECT * FROM MEMBERS;
+--SELECT * FROM MEMBERS;
+SELECT * FROM REVIEW2;
+--DELETE * FROM REVIEW2;
+
+--SHOW PARAMETER PROCESSES;
 
 --아이디중복체크
 --SELECT userid FROM MEMBERS WHERE userid = 'apple123';			
@@ -195,8 +171,8 @@ SELECT * FROM MEMBERS;
 
 --SELECT TO_CHAR(SYSDATE,'DL') FROM DUAL; --2019년 11월 30일 토요일
 --회원정보
---SELECT userid, userpw, name, email, phone, zipcode, 
---					address1, address2, signupdate, status, booking, cancle, point
+--SELECT userid, name, email, phone, zipcode, 
+--					address1, address2, signupdate, status
 --FROM MEMBERS WHERE userid = 'apple123';
 --아이디
 --SELECT userid FROM MEMBERS WHERE name = #{name} AND email = #{email}
@@ -269,8 +245,6 @@ SELECT * FROM MEMBERS;
 --SELECT * FROM SEATS;
 --SELECT * FROM TICKET;
 --SELECT * FROM BOOKING;
-
-
 
 
 

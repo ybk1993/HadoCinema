@@ -1,26 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
-<html>
-<jsp:include page="../cdn.jsp"></jsp:include>
-<link href="${pageContext.request.contextPath }/resources/css/main_top.css" rel="stylesheet">
-
+<!DOCTYPE html>
+<html lang="ko">
 	<head>
-		<!-- 합쳐지고 최소화된 최신 CSS -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-		<!-- 부가적인 테마 -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+		<meta charset="UTF-8">
+	  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		
-		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
- 	 	<jsp:include page="../header.jsp"></jsp:include>
+		<jsp:include page="../cdn.jsp"></jsp:include>
+		
+		<link href="${pageContext.request.contextPath }/resources/css/header1.css" rel="stylesheet">
 	 
 	 	<title>게시판</title>
 	 	<style type="text/css">
-			li {list-style: none; float: left; padding: 6px;}
+			section li {list-style: none; float: left; padding: 6px;}
 		</style>
 	</head>
 	<body>
+ 	  <jsp:include page="../review/writeReview.jsp"></jsp:include>
+	  <jsp:include page="../header.jsp"></jsp:include>
 		<div class="container">
 			<header>
 			<br><br>

@@ -6,6 +6,11 @@
 /* div[class*="empty"] {    border: 1px solid white;
 } */
 
+body {
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+
 a:focus {
     border: none;
     outline: none;
@@ -17,19 +22,19 @@ a, a:hover{
 
 .dropdown:hover .sb1 {
     display: block;
-    left: -34.2vw;
+    left: -39vw;
 }
 .dropdown:hover .sb2 {
     display: block;
-    left: -42.2vw;
+    left: -46vw;
 }
 .dropdown:hover .sb3 {
     display: block;
-    left: -50.3vw;
+    left: -56vw;
 }
 .dropdown:hover .sb4 {
     display: block;
-    left: -50.1vw;
+    left: -65vw;
 }
 
 #login {
@@ -90,16 +95,16 @@ ul{
 }
 
 .sb1 li:nth-child(1) {
-    margin-left: 41vw;
+    margin-left: 38.5vw;
 }
 .sb2 li:nth-child(1) {
-    margin-left: 46vw;
+    margin-left: 46.8vw;
 }
 .sb3 li:nth-child(1) {
-    margin-left: 37vw;
+    margin-left: 55.6vw;
 }
 .sb4 li:nth-child(1) {
-    margin-left: 45vw;
+    margin-left: 58vw;
 }
 
 .submenu {

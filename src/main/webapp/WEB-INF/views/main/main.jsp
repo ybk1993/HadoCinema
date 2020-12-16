@@ -15,10 +15,17 @@
 <form>
 
 </form>
-
- <jsp:include page="../mypageModals.jsp"></jsp:include>
- <jsp:include page="../memberModals.jsp"></jsp:include>
- <jsp:include page="../review/writeReview.jsp"></jsp:include>
+<c:if test="${login ne 'admin' }">
+	<c:choose>
+		<c:when test="${empty login}">
+			<jsp:include page="../memberModals.jsp"></jsp:include>
+		</c:when>
+		<c:otherwise>
+			<jsp:include page="../mypageModals.jsp"></jsp:include>
+		</c:otherwise>
+	</c:choose>
+</c:if>
+<jsp:include page="../review/writeReview.jsp"></jsp:include>
 
   <!--Carousel Wrapper-->
   <div id="carousel-example-1z" class="carousel slide carousel-fade" data-ride="carousel">
@@ -77,39 +84,7 @@
     <!-- Grid row -->
     <div class="row">
 
-      <!-- Grid column -->
-      <div class="col-lg-2 col-md-12 mb-4 text-center">
-
-        <!--Modal: Name-->
-        <div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-          aria-hidden="true">
-          <div class="modal-dialog modal-lg" role="document">
-
-            <!--Content-->
-            <div class="modal-content">
-
-              <!--Body-->
-              <div class="modal-body mb-0 p-0">
-                <!-- https://youtu.be/Dh7lKxrOiCY -->
-                <div class="embed-responsive embed-responsive-16by9 z-depth-1-half">
-                  <iframe width="741" height="417" src="https://www.youtube.com/embed/Dh7lKxrOiCY" frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen></iframe>
-                </div>
-              </div>
-            </div>
-            <!--/.Content-->
-
-          </div>
-        </div>
-        <!--Modal: Name-->
-
-        <a><img class="img-fluid z-depth-1 trailer" src="${pageContext.request.contextPath }/resources/image/monsterhunter01.jpg" alt="video" data-toggle="modal"
-            data-target="#modal1"></a>
-        <div class="card-footer bg-white text-muted small text-sm-center"><small>몬스터헌터<br>예매율 5.1%
-            &nbsp;&VerticalSeparator;&nbsp; &bigstar;7.5</small></div>
-      </div>
-      <!-- Grid column -->
+      
 
       <!-- Grid column -->
       <div class="col-lg-2 col-md-12 mb-4 text-center">
@@ -222,7 +197,17 @@
   </div>  
 <!-- middle contents -->
 
-<script src="${pageContext.request.contextPath }/resources/js/register.js"></script>
+<c:if test="${login ne 'admin' }">
+	<c:choose>
+		<c:when test="${empty login}">
+			<script src="${pageContext.request.contextPath }/resources/js/register.js"></script>
+		</c:when>
+		<c:otherwise>
+			<script src="${pageContext.request.contextPath }/resources/js/mypage.js"></script>
+		</c:otherwise>
+	</c:choose>
+</c:if>
+
 <script src="${pageContext.request.contextPath }/resources/js/trailer.js"></script>
 </body>
 </html>

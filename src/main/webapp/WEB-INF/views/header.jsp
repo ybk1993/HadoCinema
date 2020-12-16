@@ -46,22 +46,13 @@
       <li class="col-md-1 dropdown hdmenu menu">
         <a href="">리뷰</a>
         <ul class="justify-content-center dropdown-menu sub sb1">
-          <li><a href="${pageContext.request.contextPath }/review/reviewLists2" class="grey-text submenu">모든 리뷰</a></li>
+          <li><a href="${pageContext.request.contextPath }/review/reviewLists2" class="grey-text submenu">리뷰 크롤링</a></li>
           <c:if test="${not empty login}">
           	<li><a href="${pageContext.request.contextPath }/review/reviewLists" class="grey-text submenu">해도시네마 리뷰</a></li>
+          	<a href="${pageContext.request.contextPath }/review/writeReview" class="grey-text submenu" data-toggle="modal" data-target="#myModal">리뷰 작성</a>
           </c:if>
         </ul>
       </li>
-      
-      <%
-      String uri2 = (String)request.getAttribute( "javax.servlet.forward.request_uri" ); 
-      if(uri2.equals("/main")){ %>
-      <c:if test="${not empty login}">   
-      <li class="col-md-1 dropdown hdmenu menu">
-        <a href="${pageContext.request.contextPath }/review/writeReview" data-toggle="modal" data-target="#myModal">리뷰 작성</a>
-      </li>
-      </c:if>
-      <%} %>
       
       <li class="col-md-1 dropdown hdmenu menu">
         <a href="">영화</a>
@@ -70,19 +61,14 @@
         </ul>
       </li>
       
-
       <li class="col-md-1 dropdown hdmenu menu">
         <a href="">고객센터</a>
-        <ul class="justify-content-center dropdown-menu sub sb4">
-              <c:if test="${not empty login}">  
+        <ul class="justify-content-center dropdown-menu sub sb3">
           <li><a href="${pageContext.request.contextPath }/faq/faq" class="grey-text submenu">FAQ문의</a></li>
-              </c:if>   
           <li><a href="${pageContext.request.contextPath }/cs/qanda" class="grey-text submenu">1:1 문의하기</a></li>
         </ul>
       </li>
 
-
-      
       <c:if test="${not empty login and login eq 'admin' }">
       <li class="col-md-1 dropdown hdmenu menu">
         <a href="">관리자</a>

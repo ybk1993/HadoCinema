@@ -1,13 +1,13 @@
 package com.lec.controller;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.sound.midi.MidiDevice.Info;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,18 +41,25 @@ public class MemRestController {
  
     @GetMapping("member/{userid}")
     public String getMemUserid(@PathVariable("userid") String id, Model model) {
-    	logger.info("getMemUserid 진입");
+    	logger.debug("getMemUserid controller 진입");
     	boolean getId = memservice.getMemUserid(id);
-//    	System.out.println(getId);
     	model.addAttribute("chkId", getId);
     	
     	return getId + "";
+    }
+    
+    @GetMapping("register/{email:.+}")
+    public String chkMemEmail(@PathVariable("email") String email, Model model) {
+    	logger.debug("chkMemEmail controller 진입 - " + email);
+    	boolean getMail = memservice.chkMemEmail(email);
+    	model.addAttribute("chkMail", getMail);
     	
+    	return getMail + "";
     }
  
     @PostMapping("/register")
-    public boolean register(memberDTO dto, Model model) {
-    	logger.info("register 진입");
+    public boolean register(memberDTO dto) {
+    	logger.debug("register controller 진입");
     	boolean registerOk = memservice.register(dto);
     	
         return registerOk;
@@ -84,18 +91,35 @@ public class MemRestController {
 		
     }
     
-
+    
+//    @GetMapping("/meminfo/{userid}")
+//    public void getMemInfo(@PathVariable("userid")String id, Model model) {
+//    	logger.info("meminfo controller 진입");
+//    	memberDTO memberdto = memberService.getMemInfo(id);
+//    	
+//	}
+    
     @PostMapping("/update")
-    public void update(memberDTO dto, Model model) {
-    	System.out.println("update");
-    	memservice.register(dto);
+    public void update(memberDTO dto, HttpServletRequest request) {
+    	logger.debug("update controller 진입");
+    	HttpSession session = request.getSession();
+    	memservice.updateMemInfo(dto);
+    	
+    	logger.debug("세션으로 전송대기["+dto.getName()+"]");
+    	session.setAttribute(LOGIN, dto.getUserid());
+    	session.setAttribute("name", dto.getName());
+    	session.setAttribute("email", dto.getEmail());
+    	session.setAttribute("phone", dto.getPhone());
+    	session.setAttribute("zipcode", dto.getZipcode());
+    	session.setAttribute("add1", dto.getAddress1());
+    	session.setAttribute("add2", dto.getAddress2());
+    	session.setAttribute("status", dto.getStatus());
     	
     }
-
     
     // 로그아웃 하는 부분
     @GetMapping("logout")
-    public ModelAndView logout(Model model, HttpServletRequest request) {
+    public ModelAndView logout(HttpServletRequest request) {
         HttpSession session = request.getSession();
         
         if (session.getAttribute(LOGIN) != null) {
